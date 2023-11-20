@@ -14,7 +14,8 @@ public class PanelElegirViaje extends JPanel implements ActionListener {
 
     public PanelElegirViaje(){
         SeleccionOrigen = new JMenuBar();
-        SeleccionOrigen.setBounds(500,100,200,200);
+        SeleccionOrigen.setLayout(null);
+        SeleccionOrigen.setBounds(120,120,100,50);
         this.add(SeleccionOrigen);
         OpcionesOrigen = new JMenu("Origen");
         opcion1 = new JMenuItem("Concepcion");
@@ -26,10 +27,11 @@ public class PanelElegirViaje extends JPanel implements ActionListener {
         opcion3 = new JMenuItem("Santiago");
         opcion3.addActionListener(this);
         OpcionesOrigen.add(opcion3);
-        
+
 
         SeleccionDestino = new JMenuBar();
-        SeleccionDestino.setBounds(300,400,200,200);
+        SeleccionDestino.setLayout(null);
+        SeleccionDestino.setBounds(150,200,100,50);
         OpcionesDestino = new JMenu("Destino");
         opcion4 = new JMenuItem("Concepcion");
         opcion4.addActionListener(this);
@@ -39,6 +41,13 @@ public class PanelElegirViaje extends JPanel implements ActionListener {
         OpcionesDestino.add(opcion5);
         opcion6 = new JMenuItem("Santiago");
         OpcionesDestino.add(opcion6);
+        this.setLayout(null);
+        this.add(SeleccionOrigen);
+        this.add(SeleccionDestino);
+
+
+
+
 
 
 
