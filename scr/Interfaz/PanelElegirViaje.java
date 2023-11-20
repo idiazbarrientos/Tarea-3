@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class PanelElegirViaje extends JFrame implements ActionListener {
+public class PanelElegirViaje extends JPanel implements ActionListener {
     private JMenuBar SeleccionOrigen;
     private JMenuBar SeleccionDestino;
     private JMenu OpcionesOrigen;
@@ -26,13 +26,26 @@ public class PanelElegirViaje extends JFrame implements ActionListener {
         opcion3 = new JMenuItem("Santiago");
         opcion3.addActionListener(this);
         OpcionesOrigen.add(opcion3);
+        
 
-        SeleccionDestino =
+        SeleccionDestino = new JMenuBar();
+        SeleccionDestino.setBounds(300,400,200,200);
+        OpcionesDestino = new JMenu("Destino");
+        opcion4 = new JMenuItem("Concepcion");
+        opcion4.addActionListener(this);
+        OpcionesDestino.add(opcion4);
+        opcion5 = new JMenuItem("Puerto Montt");
+        opcion5.addActionListener(this);
+        OpcionesDestino.add(opcion5);
+        opcion6 = new JMenuItem("Santiago");
+        OpcionesDestino.add(opcion6);
 
 
 
 
     }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
