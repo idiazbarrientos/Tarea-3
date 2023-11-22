@@ -6,45 +6,40 @@ import java.awt.event.ActionListener;
 
 
 public class PanelElegirViaje extends JPanel implements ActionListener {
-    private JMenuBar SeleccionOrigen;
-    private JMenuBar SeleccionDestino;
-    private JMenu OpcionesOrigen;
-    private JMenu OpcionesDestino;
-    private JMenuItem opcion1, opcion2, opcion3, opcion4, opcion5, opcion6;
+    private JMenu SeleccionOrigen;
+    private JMenu SeleccionDestino;
+    private JMenuBar BarraOrigen;
+    private JMenuBar BarraDestino;
+
+
 
     public PanelElegirViaje(){
-        SeleccionOrigen = new JMenuBar();
-        SeleccionOrigen.setLayout(null);
-        SeleccionOrigen.setBounds(120,120,100,50);
-        this.add(SeleccionOrigen);
-        OpcionesOrigen = new JMenu("Origen");
-        opcion1 = new JMenuItem("Concepcion");
-        opcion1.addActionListener(this);
-        OpcionesOrigen.add(opcion1);
-        opcion2 = new JMenuItem("Puerto Montt");
-        opcion2.addActionListener(this);
-        OpcionesOrigen.add(opcion2);
-        opcion3 = new JMenuItem("Santiago");
-        opcion3.addActionListener(this);
-        OpcionesOrigen.add(opcion3);
-
-
-        SeleccionDestino = new JMenuBar();
-        SeleccionDestino.setLayout(null);
-        SeleccionDestino.setBounds(150,200,100,50);
-        OpcionesDestino = new JMenu("Destino");
-        opcion4 = new JMenuItem("Concepcion");
-        opcion4.addActionListener(this);
-        OpcionesDestino.add(opcion4);
-        opcion5 = new JMenuItem("Puerto Montt");
-        opcion5.addActionListener(this);
-        OpcionesDestino.add(opcion5);
-        opcion6 = new JMenuItem("Santiago");
-        OpcionesDestino.add(opcion6);
         this.setLayout(null);
-        this.add(SeleccionOrigen);
-        this.add(SeleccionDestino);
+        BarraOrigen opcion1 = new BarraOrigen("Concepcion");
+        BarraOrigen opcion2 = new BarraOrigen("Santiago");
+        BarraOrigen opcion3 = new BarraOrigen("Puerto Montt");
 
+        BarraOrigen = new JMenuBar();
+        BarraOrigen.setBounds(150,300,100,50);
+        this.add(BarraOrigen);
+        SeleccionOrigen = new JMenu("Origen");
+        SeleccionOrigen.add(opcion1.getItem());
+        SeleccionOrigen.add(opcion2.getItem());
+        SeleccionOrigen.add(opcion3.getItem());
+        BarraOrigen.add(SeleccionOrigen);
+
+        BarraDestino opcion4 = new BarraDestino("Concepcion");
+        BarraDestino opcion5 = new BarraDestino("Santiago");
+        BarraDestino opcion6 = new BarraDestino("Puerto Montt");
+
+        BarraDestino = new JMenuBar();
+        BarraDestino.setBounds(150,400,100,50);
+        this.add(BarraDestino);
+        SeleccionDestino = new JMenu("Destino");
+        SeleccionDestino.add(opcion4.getItem());
+        SeleccionDestino.add(opcion5.getItem());
+        SeleccionDestino.add(opcion6.getItem());
+        BarraDestino.add(SeleccionDestino);
 
 
 
@@ -53,6 +48,7 @@ public class PanelElegirViaje extends JPanel implements ActionListener {
 
 
     }
+
 
 
 

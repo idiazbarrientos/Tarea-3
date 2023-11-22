@@ -1,7 +1,11 @@
 package Interfaz;
 
+import javax.swing.*;
+
 public class InterfazGUI {
     public static void main(String[] args){
-        Ventana v = new Ventana();
+        SwingUtilities.invokeLater(() -> {
+            new Ventana();
+        });
     }
 }
