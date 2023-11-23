@@ -5,22 +5,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class PanelElegirViaje extends JPanel implements ActionListener {
+public class PanelElegirViaje extends JPanel {
     private JMenu SeleccionOrigen;
     private JMenu SeleccionDestino;
     private JMenuBar BarraOrigen;
     private JMenuBar BarraDestino;
+    private JRadioButton ida;
+    private JRadioButton vuelta;
+    private PanelBus panelbus;
+    private JButton siguiente;
 
 
 
-    public PanelElegirViaje(){
+
+    public PanelElegirViaje() {
         this.setLayout(null);
         BarraOrigen opcion1 = new BarraOrigen("Concepcion");
         BarraOrigen opcion2 = new BarraOrigen("Santiago");
         BarraOrigen opcion3 = new BarraOrigen("Puerto Montt");
 
         BarraOrigen = new JMenuBar();
-        BarraOrigen.setBounds(150,300,100,50);
+        BarraOrigen.setBounds(150, 300, 100, 50);
         this.add(BarraOrigen);
         SeleccionOrigen = new JMenu("Origen");
         SeleccionOrigen.add(opcion1.getItem());
@@ -33,7 +38,7 @@ public class PanelElegirViaje extends JPanel implements ActionListener {
         BarraDestino opcion6 = new BarraDestino("Puerto Montt");
 
         BarraDestino = new JMenuBar();
-        BarraDestino.setBounds(150,400,100,50);
+        BarraDestino.setBounds(150, 400, 100, 50);
         this.add(BarraDestino);
         SeleccionDestino = new JMenu("Destino");
         SeleccionDestino.add(opcion4.getItem());
@@ -41,13 +46,16 @@ public class PanelElegirViaje extends JPanel implements ActionListener {
         SeleccionDestino.add(opcion6.getItem());
         BarraDestino.add(SeleccionDestino);
 
+        siguiente = new JButton("Siguiente");
+        siguiente.setBounds(100,200,100,100);
+        siguiente.addActionListener(new siguienteListener());
 
         ButtonGroup grupo = new ButtonGroup();
 
-        JRadioButton ida = new JRadioButton("Solo Ida");
-        ida.setBounds(150,450,100,100);
-        JRadioButton vuelta = new JRadioButton("Ida y Vuelta");
-        vuelta.setBounds(275,450,200,100);
+        ida = new JRadioButton("Solo Ida");
+        ida.setBounds(150, 450, 100, 100);
+        vuelta = new JRadioButton("Ida y Vuelta");
+        vuelta.setBounds(275, 450, 200, 100);
 
         grupo.add(ida);
         grupo.add(vuelta);
@@ -56,17 +64,19 @@ public class PanelElegirViaje extends JPanel implements ActionListener {
         this.add(vuelta);
 
 
-
-
-
-
+    }
+    public void seleccionarBus(){
+        if(ida.isSelected() || vuelta.isSelected()){
+            this.add(panelbus = new PanelBus());
+            System.out.println("pene");
+        }
     }
 
-
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
+    private class siguienteListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            seleccionarBus();
+        }
     }
+
 }
