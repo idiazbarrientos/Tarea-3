@@ -42,6 +42,19 @@ public class PanelElegirViaje extends JPanel implements ActionListener {
         BarraDestino.add(SeleccionDestino);
 
 
+        ButtonGroup grupo = new ButtonGroup();
+
+        JRadioButton ida = new JRadioButton("Solo Ida");
+        ida.setBounds(150,450,100,100);
+        JRadioButton vuelta = new JRadioButton("Ida y Vuelta");
+        vuelta.setBounds(275,450,200,100);
+
+        grupo.add(ida);
+        grupo.add(vuelta);
+
+        this.add(ida);
+        this.add(vuelta);
+
 
 
 
