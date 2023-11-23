@@ -13,7 +13,7 @@ public class PanelElegirViaje extends JPanel {
     private JRadioButton ida;
     private JRadioButton vuelta;
     private PanelBus panelbus;
-    private JButton siguiente;
+
 
 
 
@@ -46,8 +46,9 @@ public class PanelElegirViaje extends JPanel {
         SeleccionDestino.add(opcion6.getItem());
         BarraDestino.add(SeleccionDestino);
 
-        siguiente = new JButton("Siguiente");
-        siguiente.setBounds(100,200,100,100);
+        JButton siguiente = new JButton("Siguiente");
+        this.add(siguiente);
+        siguiente.setBounds(150,600,100,100);
         siguiente.addActionListener(new siguienteListener());
 
         ButtonGroup grupo = new ButtonGroup();
@@ -66,11 +67,13 @@ public class PanelElegirViaje extends JPanel {
 
     }
     public void seleccionarBus(){
-        if(ida.isSelected() || vuelta.isSelected()){
+        if(ida.isSelected() || vuelta.isSelected()) {
             this.add(panelbus = new PanelBus());
-            System.out.println("pene");
+            System.out.println("ola");
         }
     }
+
+
 
     private class siguienteListener implements ActionListener{
         @Override
