@@ -1,4 +1,4 @@
 package Codigo;
 
-public class BusDosPisos {
+public class BusDosPisos extends Bus{
 }
