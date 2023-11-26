@@ -70,7 +70,7 @@ public class PanelElegirViaje extends JPanel {
         if(ida.isSelected() || vuelta.isSelected()) {
             panelbus = new PanelBus();
             this.add(panelbus);
-            panelbus.setBounds(400,100,500,500);
+            panelbus.setBounds(400,50,500,800);
             System.out.println("ola");
         }
     }

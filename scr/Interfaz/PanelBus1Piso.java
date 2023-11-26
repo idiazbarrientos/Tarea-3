@@ -1,4 +1,6 @@
 package Interfaz;
 
-public class PanelBus1Piso {
+import javax.swing.*;
+
+public class PanelBus1Piso extends JPanel {
 }
