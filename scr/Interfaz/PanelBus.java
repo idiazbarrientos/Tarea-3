@@ -40,7 +40,7 @@ public class PanelBus extends JPanel {
 
         JButton EscogerAsiento = new JButton("Escoger Asiento");
         this.add(EscogerAsiento);
-        EscogerAsiento.setBounds(100,600,100,100);
+        EscogerAsiento.setBounds(100,600,150,50);
         EscogerAsiento.addActionListener(new PanelBus.EscogerAsientoteListener());
 
 
