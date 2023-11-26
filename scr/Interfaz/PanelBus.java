@@ -9,9 +9,9 @@ public class PanelBus extends JPanel {
         ButtonGroup grupo = new ButtonGroup();
 
         JToggleButton busUnPiso = new JToggleButton("Bus de 1 piso");
-        busUnPiso.setBounds(150,500,200,100);
+        busUnPiso.setBounds(500,100,200,100);
         JToggleButton busDosPisos = new JToggleButton("Bus de 2 pisos");
-        busDosPisos.setBounds(275,500,200,100);
+        busDosPisos.setBounds(500,150,200,100);
 
         grupo.add(busUnPiso);
         grupo.add(busDosPisos);
@@ -24,7 +24,7 @@ public class PanelBus extends JPanel {
         BarraHorarios opcion3 = new BarraHorarios("22:00 Pm");
 
         BarraHorarios = new JMenuBar();
-        BarraHorarios.setBounds(600,500,100,50);
+        BarraHorarios.setBounds(600,200,100,50);
         this.add(BarraHorarios);
         SeleccionHorarios = new JMenu("Origen");
         SeleccionHorarios.add(opcion1.getItem());

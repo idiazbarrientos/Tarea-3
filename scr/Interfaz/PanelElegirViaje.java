@@ -68,7 +68,8 @@ public class PanelElegirViaje extends JPanel {
     }
     public void seleccionarBus(){
         if(ida.isSelected() || vuelta.isSelected()) {
-            this.add(panelbus = new PanelBus());
+            panelbus = new PanelBus();
+            this.add(panelbus);
             System.out.println("ola");
         }
     }
