@@ -15,9 +15,9 @@ public class PanelBus extends JPanel {
         ButtonGroup grupo = new ButtonGroup();
 
         busUnPiso = new JToggleButton("Bus de 1 piso");
-        busUnPiso.setBounds(100,300,110,50);
+        busUnPiso.setBounds(100,300,150,50);
         busDosPisos = new JToggleButton("Bus de 2 pisos");
-        busDosPisos.setBounds(100,200,110,50);
+        busDosPisos.setBounds(100,200,150,50);
 
         grupo.add(busUnPiso);
         grupo.add(busDosPisos);
