@@ -70,10 +70,10 @@ public class PanelElegirViaje extends JPanel {
         if(ida.isSelected() || vuelta.isSelected()) {
             panelbus = new PanelBus();
             this.add(panelbus);
+            panelbus.setBounds(400,100,500,500);
             System.out.println("ola");
         }
     }
-
 
 
     private class siguienteListener implements ActionListener{
@@ -82,5 +82,4 @@ public class PanelElegirViaje extends JPanel {
             seleccionarBus();
         }
     }
-
 }
