@@ -1,6 +1,7 @@
 package Codigo;
 
 abstract public class Asiento {
+
     private int precio;
     private int numeroAsiento;
     private TipoAsiento type;
