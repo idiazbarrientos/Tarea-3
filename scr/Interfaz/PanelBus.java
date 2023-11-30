@@ -11,6 +11,9 @@ public class PanelBus extends JPanel {
     private JToggleButton busDosPisos;
     private PanelBus1Piso panelBus1Piso;
     private PanelBus2Piso panelBus2Piso;
+    private JRadioButton temprano;
+    private JRadioButton tarde;
+    private JRadioButton noche;
     public PanelBus(){
         ButtonGroup grupo = new ButtonGroup();
 
@@ -25,18 +28,23 @@ public class PanelBus extends JPanel {
         this.add(busUnPiso);
         this.add(busDosPisos);
 
-        BarraHorarios opc1 = new BarraHorarios("10:00 Am");
-        BarraHorarios opc2 = new BarraHorarios("15:00 Pm");
-        BarraHorarios opc3 = new BarraHorarios("22:00 Pm");
+        ButtonGroup group = new ButtonGroup();
 
-        BarraHorarios = new JMenuBar();
-        BarraHorarios.setBounds(100,425,150,100);
-        this.add(BarraHorarios);
-        SeleccionHorarios = new JMenu("Horarios");
-        SeleccionHorarios.add(opc1.getItem());
-        SeleccionHorarios.add(opc2.getItem());
-        SeleccionHorarios.add(opc3.getItem());
-        BarraHorarios.add(SeleccionHorarios);
+        temprano = new JRadioButton("10:00 am");
+        temprano.setBounds(100, 425, 100, 100);
+        tarde = new JRadioButton("16:00 pm");
+        tarde.setBounds(200, 410, 200, 100);
+        noche = new JRadioButton("22:00 pm");
+        noche.setBounds(100,400,100,100);
+
+        group.add(temprano);
+        group.add(tarde);
+        group.add(noche);
+
+
+        this.add(temprano);
+        this.add(tarde);
+        this.add(noche);
 
         JButton EscogerAsiento = new JButton("Escoger Asiento");
         this.add(EscogerAsiento);
