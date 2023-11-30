@@ -31,11 +31,11 @@ public class PanelBus extends JPanel {
         ButtonGroup group = new ButtonGroup();
 
         temprano = new JRadioButton("10:00 am");
-        temprano.setBounds(100, 425, 100, 100);
+        temprano.setBounds(100, 425, 100, 50);
         tarde = new JRadioButton("16:00 pm");
-        tarde.setBounds(200, 410, 200, 100);
+        tarde.setBounds(100, 400, 100, 50);
         noche = new JRadioButton("22:00 pm");
-        noche.setBounds(100,400,100,100);
+        noche.setBounds(100,375,100,50);
 
         group.add(temprano);
         group.add(tarde);
