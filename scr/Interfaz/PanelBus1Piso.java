@@ -24,12 +24,6 @@ public class PanelBus1Piso extends JPanel {
                 array_botones.get(i-1).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        JButton btn = (JButton) e.getSource();
-                        if (btn.getBackground() == Color.GREEN) {
-                            btn.setBackground(null); // Si está seleccionado, se deselecciona
-                        } else {
-                            btn.setBackground(Color.GREEN); // Si no está seleccionado, se selecciona (cambia a verde)
-                        }
                     }
                 });
                 this.add( array_botones.get(i-1));
