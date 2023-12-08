@@ -66,9 +66,18 @@ public class PanelBus extends JPanel {
             panelElegirViaje.revalidate();
             System.out.println("ola");
         } else if (busDosPisos.isSelected()){
+            JButton Piso2 = new JButton("Piso2");
+            JButton Piso1 = new JButton("Piso1");
+            Piso2.setBounds(1150,3,150,50);
+            Piso1.setBounds(1000,3,150,50);
             panelBus2Piso = new PanelBus2Piso();
-            this.add(panelBus2Piso);
-
+            panelElegirViaje.add(panelBus2Piso);
+            panelBus2Piso.setBounds(910,50,500,800);
+            panelBus2Piso.setBackground(Color.pink);
+            panelElegirViaje.repaint();
+            panelElegirViaje.revalidate();
+            panelElegirViaje.add(Piso1);
+            panelElegirViaje.add(Piso2);
         }
     }
     private class EscogerAsientoteListener implements ActionListener {
