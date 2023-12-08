@@ -57,6 +57,8 @@ public class PanelBus extends JPanel {
         if(busUnPiso.isSelected()){
             panelBus1Piso = new PanelBus1Piso();
             this.add(panelBus1Piso);
+            panelBus1Piso.setBounds(400, 50,500,800);
+            System.out.println("ola");
         } else if (busDosPisos.isSelected()){
             panelBus2Piso = new PanelBus2Piso();
             this.add(panelBus2Piso);
