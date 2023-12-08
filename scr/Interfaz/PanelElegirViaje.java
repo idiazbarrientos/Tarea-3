@@ -1,6 +1,7 @@
 package Interfaz;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -64,11 +65,13 @@ public class PanelElegirViaje extends JPanel {
         this.add(ida);
         this.add(vuelta);
 
+        this.setBackground(Color.CYAN);
+
 
     }
     public void seleccionarBus(){
         if(ida.isSelected() || vuelta.isSelected()) {
-            panelbus = new PanelBus();
+            panelbus = new PanelBus(this);
             this.add(panelbus);
             panelbus.setBounds(400,50,500,800);
             System.out.println("ola");

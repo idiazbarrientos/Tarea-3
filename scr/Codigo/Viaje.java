@@ -12,7 +12,6 @@ public class Viaje {
         this.nCama = nCama;
         this.origen = origen;
         this.destino = destino;
-        
     }
 
 }

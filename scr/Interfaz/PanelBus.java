@@ -1,6 +1,7 @@
 package Interfaz;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,9 +15,11 @@ public class PanelBus extends JPanel {
     private JRadioButton temprano;
     private JRadioButton tarde;
     private JRadioButton noche;
-    public PanelBus(){
+    private PanelElegirViaje panelElegirViaje;
+    public PanelBus(PanelElegirViaje panelElegirViaje){
         ButtonGroup grupo = new ButtonGroup();
-
+        this.setLayout(null);
+        this.panelElegirViaje = panelElegirViaje;
         busUnPiso = new JToggleButton("Bus de 1 piso");
         busUnPiso.setBounds(100,300,150,50);
         busDosPisos = new JToggleButton("Bus de 2 pisos");
@@ -50,14 +53,17 @@ public class PanelBus extends JPanel {
         this.add(EscogerAsiento);
         EscogerAsiento.setBounds(100,600,150,50);
         EscogerAsiento.addActionListener(new PanelBus.EscogerAsientoteListener());
-
+        this.setBackground(Color.BLUE);
 
     }
     public void seleecionarTipoDeBus(){
         if(busUnPiso.isSelected()){
             panelBus1Piso = new PanelBus1Piso();
-            this.add(panelBus1Piso);
-            panelBus1Piso.setBounds(400, 50,500,800);
+            panelElegirViaje.add(panelBus1Piso);
+            panelBus1Piso.setBounds(910,50,500,800);
+            panelBus1Piso.setBackground(Color.red);
+            panelElegirViaje.repaint();
+            panelElegirViaje.revalidate();
             System.out.println("ola");
         } else if (busDosPisos.isSelected()){
             panelBus2Piso = new PanelBus2Piso();
