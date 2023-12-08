@@ -1,9 +1,12 @@
 package Interfaz;
 
+import Codigo.Bus;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class PanelBus extends JPanel {
     private JMenu SeleccionHorarios;
@@ -15,6 +18,7 @@ public class PanelBus extends JPanel {
     private JRadioButton temprano;
     private JRadioButton tarde;
     private JRadioButton noche;
+    private ArrayList<Bus> busArrayList = new ArrayList<Bus>();
     private PanelElegirViaje panelElegirViaje;
     public PanelBus(PanelElegirViaje panelElegirViaje){
         ButtonGroup grupo = new ButtonGroup();
