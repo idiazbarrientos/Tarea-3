@@ -20,7 +20,7 @@ public class PanelElegirViaje extends JPanel {
     private JRadioButton ida;
     private JRadioButton vuelta;
     private PanelBus panelbus;
-
+    
 
 
 
@@ -60,8 +60,16 @@ public class PanelElegirViaje extends JPanel {
         SeleccionDia= new JMenu("Día");
 
         for(int i = 1; i<=31; i++){
-            BarraDia opcion = new BarraDia(Integer.toString(i));
-            SeleccionDia.add(opcion.getItem());
+
+            JMenuItem opcion = new JMenuItem(Integer.toString(i));
+            SeleccionDia.add(opcion);
+            opcion.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JMenuItem item = (JMenuItem) e.getSource();
+                    SeleccionDia.setText(item.getText());
+                }
+            });
 
         }
         BarraDia.add(SeleccionDia);
@@ -72,8 +80,15 @@ public class PanelElegirViaje extends JPanel {
         SeleccionMes = new JMenu("Mes");
 
         for(int i =1; i<=12; i++){
-            BarraMes opcion = new BarraMes(Integer.toString(i));
-            SeleccionMes.add(opcion.getItem());
+            JMenuItem opcion = new JMenuItem(Integer.toString(i));
+            SeleccionMes.add(opcion);
+            opcion.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JMenuItem item = (JMenuItem) e.getSource();
+                    SeleccionMes.setText(item.getText());
+                }
+            });
         }
         BarraMes.add(SeleccionMes);
 
@@ -83,10 +98,18 @@ public class PanelElegirViaje extends JPanel {
         SeleccionAnho = new JMenu("Año");
 
         for(int i = 2023; i<=2025; i++){
-            BarraAnho opcion = new BarraAnho(Integer.toString(i));
-            SeleccionAnho.add(opcion.getItem());
+            JMenuItem opcion = new JMenuItem(Integer.toString(i));
+            opcion.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JMenuItem item= (JMenuItem) e.getSource();
+                    SeleccionAnho.setText(item.getText());
+                }
+            });
+            SeleccionAnho.add(opcion);
         }
         BarraAnho.add(SeleccionAnho);
+
 
         JButton siguiente = new JButton("Siguiente");
         this.add(siguiente);
