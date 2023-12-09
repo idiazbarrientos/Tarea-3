@@ -24,5 +24,23 @@ public abstract class Bus {
     public int getid(){
         return id;
     }
+    public String getDia(){
+        return dia;
+    }
+    public String getMes(){
+        return mes;
+    }
+    public String getAnho(){
+        return anho;
+    }
+    public String getHora(){
+        return hora;
+    }
+    public String getOrigen(){
+        return origen;
+    }
+    public String getDestino(){
+        return destino;
+    }
     public abstract String tipoBus();
 }

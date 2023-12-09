@@ -35,9 +35,9 @@ public class PanelElegirViaje extends JPanel {
     String mesVuelta;
     String anhoVuelta;
 
-    private String origen;
+    String origen;
 
-    private String destino;
+    String destino;
 
     public PanelElegirViaje() {
         this.setLayout(null);
