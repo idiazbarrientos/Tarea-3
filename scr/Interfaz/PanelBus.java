@@ -127,7 +127,9 @@ public class PanelBus extends JPanel {
     public void seleecionarTipoDeBus(){
         int indexida, indexvuelta;
         indexida=buscarBusIda();
-        indexvuelta=buscarBusVuelta();
+        if(diaVuelta != null && mesVuelta != null && anhoVuelta != null){
+            indexvuelta=buscarBusVuelta();
+        }
 
         if(busUnPiso.isSelected()){
             panelBus1Piso = new PanelBus1Piso();

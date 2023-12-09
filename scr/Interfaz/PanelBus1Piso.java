@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import static Codigo.TipoAsiento.SEMI_CAMA;
 
+
 public class PanelBus1Piso extends JPanel {
         public PanelBus1Piso(){
             setLayout(new GridLayout(10, 0, 5, 5));
