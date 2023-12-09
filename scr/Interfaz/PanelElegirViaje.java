@@ -35,33 +35,45 @@ public class PanelElegirViaje extends JPanel {
     private String mesVuelta;
     private String anhoVuelta;
 
+    private String origen;
+
+    private String destino;
+
     public PanelElegirViaje() {
         this.setLayout(null);
-        BarraOrigen opcion1 = new BarraOrigen("Concepcion");
-        BarraOrigen opcion2 = new BarraOrigen("Santiago");
-        BarraOrigen opcion3 = new BarraOrigen("Puerto Montt");
+        JMenuItem opcion1 = new JMenuItem("Concepcion");
+        JMenuItem opcion2 = new JMenuItem("Santiago");
+        JMenuItem opcion3 = new JMenuItem("Puerto Montt");
 
         BarraOrigen = new JMenuBar();
         BarraOrigen.setBounds(150, 300, 100, 30);
         this.add(BarraOrigen);
         SeleccionOrigen = new JMenu("Origen");
-        SeleccionOrigen.add(opcion1.getItem());
-        SeleccionOrigen.add(opcion2.getItem());
-        SeleccionOrigen.add(opcion3.getItem());
+        SeleccionOrigen.add(opcion1);
+        SeleccionOrigen.add(opcion2);
+        SeleccionOrigen.add(opcion3);
         BarraOrigen.add(SeleccionOrigen);
 
-        BarraDestino opcion4 = new BarraDestino("Concepcion");
-        BarraDestino opcion5 = new BarraDestino("Santiago");
-        BarraDestino opcion6 = new BarraDestino("Puerto Montt");
+        opcion1.addActionListener(new origenListener());
+        opcion2.addActionListener(new origenListener());
+        opcion3.addActionListener(new origenListener());
+
+        JMenuItem opcion4 = new JMenuItem("Concepcion");
+        JMenuItem opcion5 = new JMenuItem("Santiago");
+        JMenuItem opcion6 = new JMenuItem("Puerto Montt");
 
         BarraDestino = new JMenuBar();
         BarraDestino.setBounds(150, 400, 100, 30);
         this.add(BarraDestino);
         SeleccionDestino = new JMenu("Destino");
-        SeleccionDestino.add(opcion4.getItem());
-        SeleccionDestino.add(opcion5.getItem());
-        SeleccionDestino.add(opcion6.getItem());
+        SeleccionDestino.add(opcion4);
+        SeleccionDestino.add(opcion5);
+        SeleccionDestino.add(opcion6);
         BarraDestino.add(SeleccionDestino);
+
+        opcion4.addActionListener(new destinoListener());
+        opcion5.addActionListener(new destinoListener());
+        opcion6.addActionListener(new destinoListener());
 
         BarraDia = new JMenuBar();
         BarraDia.setBounds(150, 550, 50, 20);
@@ -135,7 +147,7 @@ public class PanelElegirViaje extends JPanel {
         ida.setBounds(150, 450, 100, 100);
         ida.addActionListener(new idaListener());
         vuelta = new JRadioButton("Ida y Vuelta");
-        vuelta.setBounds(275, 450, 200, 100);
+        vuelta.setBounds(275, 450, 100, 100);
         vuelta.addActionListener(new vueltaListener());
 
         grupo.add(ida);
@@ -225,6 +237,7 @@ public class PanelElegirViaje extends JPanel {
         this.revalidate();
         this.repaint();
     }
+
     public void seleccionarBus(){
         if(ida.isSelected() || vuelta.isSelected()) {
             panelbus = new PanelBus(this);
@@ -256,4 +269,25 @@ public class PanelElegirViaje extends JPanel {
             borrarBarraVuelta();
         }
     }
+
+    private class origenListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JMenuItem item= (JMenuItem) e.getSource();
+            SeleccionOrigen.setText(item.getText());
+            origen=SeleccionOrigen.getText();
+        }
+    }
+
+    private class destinoListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JMenuItem item= (JMenuItem) e.getSource();
+            SeleccionDestino.setText(item.getText());
+            destino=SeleccionDestino.getText();
+        }
+    }
+
 }
