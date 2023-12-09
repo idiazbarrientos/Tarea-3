@@ -28,12 +28,12 @@ public class PanelElegirViaje extends JPanel {
     private JRadioButton ida;
     private JRadioButton vuelta;
     private PanelBus panelbus;
-    private String diaIda;
-    private String mesIda;
-    private String anhoIda;
-    private String diaVuelta;
-    private String mesVuelta;
-    private String anhoVuelta;
+    String diaIda;
+    String mesIda;
+    String anhoIda;
+    String diaVuelta;
+    String mesVuelta;
+    String anhoVuelta;
 
     private String origen;
 

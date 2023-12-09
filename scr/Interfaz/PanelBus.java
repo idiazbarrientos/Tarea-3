@@ -18,12 +18,27 @@ public class PanelBus extends JPanel {
     private JRadioButton temprano;
     private JRadioButton tarde;
     private JRadioButton noche;
+    private JRadioButton tempranoVuelta;
+    private JRadioButton tardeVuelta;
+    private JRadioButton nocheVuelta;
     private ArrayList<Bus> busArrayList = new ArrayList<Bus>();
     private PanelElegirViaje panelElegirViaje;
+    private String diaIda;
+    private String mesIda;
+    private String anhoIda;
+    private String diaVuelta;
+    private String mesVuelta;
+    private String anhoVuelta;
     public PanelBus(PanelElegirViaje panelElegirViaje){
         ButtonGroup grupo = new ButtonGroup();
         this.setLayout(null);
         this.panelElegirViaje = panelElegirViaje;
+        diaIda = panelElegirViaje.diaIda;
+        mesIda = panelElegirViaje.mesIda;
+        anhoIda = panelElegirViaje.anhoIda;
+        diaVuelta = panelElegirViaje.diaVuelta;
+        mesVuelta = panelElegirViaje.mesVuelta;
+        anhoVuelta = panelElegirViaje.anhoVuelta;
         busUnPiso = new JToggleButton("Bus de 1 piso");
         busUnPiso.setBounds(100,300,150,50);
         busDosPisos = new JToggleButton("Bus de 2 pisos");
@@ -38,11 +53,11 @@ public class PanelBus extends JPanel {
         ButtonGroup group = new ButtonGroup();
 
         temprano = new JRadioButton("10:00 am");
-        temprano.setBounds(100, 500, 100, 50);
+        temprano.setBounds(100, 400, 100, 50);
         tarde = new JRadioButton("16:00 pm");
         tarde.setBounds(100, 450, 100, 50);
         noche = new JRadioButton("22:00 pm");
-        noche.setBounds(100,400,100,50);
+        noche.setBounds(100,500,100,50);
 
         group.add(temprano);
         group.add(tarde);
@@ -58,6 +73,23 @@ public class PanelBus extends JPanel {
         EscogerAsiento.setBounds(100,600,150,50);
         EscogerAsiento.addActionListener(new PanelBus.EscogerAsientoteListener());
         this.setBackground(Color.BLUE);
+        if(diaVuelta != null && mesVuelta != null && anhoVuelta != null){
+            tempranoVuelta = new JRadioButton("10:00 am");
+            tempranoVuelta.setBounds(200, 400, 100, 50);
+            tardeVuelta = new JRadioButton("16:00 pm");
+            tardeVuelta.setBounds(200, 450, 100, 50);
+            nocheVuelta = new JRadioButton("22:00 pm");
+            nocheVuelta.setBounds(200,500,100,50);
+            ButtonGroup group2 = new ButtonGroup();
+            group2.add(tempranoVuelta);
+            group2.add(tardeVuelta);
+            group2.add(nocheVuelta);
+
+
+            this.add(tempranoVuelta);
+            this.add(tardeVuelta);
+            this.add(nocheVuelta);
+        }
 
     }
     public void seleecionarTipoDeBus(){

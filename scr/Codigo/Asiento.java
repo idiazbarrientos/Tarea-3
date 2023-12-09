@@ -1,6 +1,6 @@
 package Codigo;
 
-abstract public class Asiento {
+public class Asiento {
 
     private int precio;
     private int numeroAsiento;
@@ -20,7 +20,9 @@ abstract public class Asiento {
         return type;
     }
 
-    public abstract String TipoAsiento();
+    public String TipoAsiento() {
+        return null;
+    }
 
     public void select() {
         if (!comprado) {
