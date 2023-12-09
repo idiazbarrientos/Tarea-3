@@ -10,6 +10,7 @@ public class Asiento {
 
     public Asiento(int numeroAsiento, TipoAsiento type) {
         this.numeroAsiento = numeroAsiento;
+        this.type=type;
     }
 
     public int getNumeroAsiento() {

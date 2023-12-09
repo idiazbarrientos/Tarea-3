@@ -46,7 +46,7 @@ public class PanelElegirViaje extends JPanel {
         JMenuItem opcion3 = new JMenuItem("Puerto Montt");
 
         BarraOrigen = new JMenuBar();
-        BarraOrigen.setBounds(150, 300, 100, 30);
+        BarraOrigen.setBounds(10, 100, 100, 30);
         this.add(BarraOrigen);
         SeleccionOrigen = new JMenu("Origen");
         SeleccionOrigen.add(opcion1);
@@ -63,7 +63,7 @@ public class PanelElegirViaje extends JPanel {
         JMenuItem opcion6 = new JMenuItem("Puerto Montt");
 
         BarraDestino = new JMenuBar();
-        BarraDestino.setBounds(150, 400, 100, 30);
+        BarraDestino.setBounds(10, 150, 100, 30);
         this.add(BarraDestino);
         SeleccionDestino = new JMenu("Destino");
         SeleccionDestino.add(opcion4);

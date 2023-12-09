@@ -26,7 +26,7 @@ public class PanelBus extends JPanel {
     private JRadioButton tempranoVuelta;
     private JRadioButton tardeVuelta;
     private JRadioButton nocheVuelta;
-    private ArrayList<Bus> busArrayList = new ArrayList<Bus>();
+    ArrayList<Bus> busArrayList = new ArrayList<Bus>();
     private PanelElegirViaje panelElegirViaje;
     private String diaIda;
     private String mesIda;
@@ -124,17 +124,17 @@ public class PanelBus extends JPanel {
         }
 
     }
-    public void seleecionarTipoDeBus(){
-        int indexida, indexvuelta;
+    public void selecionarTipoDeBus(){
+        int indexida, indexvuelta = -1;
         indexida=buscarBusIda();
         if(diaVuelta != null && mesVuelta != null && anhoVuelta != null){
             indexvuelta=buscarBusVuelta();
         }
 
         if(busUnPiso.isSelected()){
-            panelBus1Piso = new PanelBus1Piso();
+            panelBus1Piso = new PanelBus1Piso(indexida, indexvuelta,this);
             panelElegirViaje.add(panelBus1Piso);
-            panelBus1Piso.setBounds(910,50,500,800);
+            panelBus1Piso.setBounds(910,50,240,480);
             panelBus1Piso.setBackground(Color.red);
             panelElegirViaje.repaint();
             panelElegirViaje.revalidate();
@@ -169,14 +169,14 @@ public class PanelBus extends JPanel {
         if(busUnPiso.isSelected()){
             BusUnPiso nuevobus=new BusUnPiso(busArrayList.size()+1,diaIda,mesIda,anhoIda,horarioIda,origen,destino);
             busArrayList.add(nuevobus);
-            return busArrayList.size();
+            return busArrayList.size()-1;
         }
         if(busDosPisos.isSelected()){
             BusDosPisos nuevobus=new BusDosPisos(busArrayList.size()+1,diaIda,mesIda,anhoIda,horarioIda,origen,destino);
             busArrayList.add(nuevobus);
-            return busArrayList.size();
+            return busArrayList.size()-1;
         }
-        return 0;
+        return -1;
     }
     public int buscarBusVuelta(){
         for(int i = 0; i<busArrayList.size(); i++){
@@ -193,19 +193,19 @@ public class PanelBus extends JPanel {
         if(busUnPiso2.isSelected()){
             BusUnPiso nuevobus=new BusUnPiso(busArrayList.size()+1,diaVuelta,mesVuelta,anhoVuelta,horarioVuelta,origen,destino);
             busArrayList.add(nuevobus);
-            return busArrayList.size();
+            return busArrayList.size()-1;
         }
         if(busDosPisos2.isSelected()){
             BusDosPisos nuevobus=new BusDosPisos(busArrayList.size()+1,diaVuelta,mesVuelta,anhoVuelta,horarioVuelta,origen,destino);
             busArrayList.add(nuevobus);
-            return busArrayList.size();
+            return busArrayList.size()-1;
         }
-        return 0;
+        return -1;
     }
     private class EscogerAsientoteListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            seleecionarTipoDeBus();
+            selecionarTipoDeBus();
         }
     }
     private class idaListener implements ActionListener{

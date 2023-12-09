@@ -9,7 +9,7 @@ public class Ventana extends JFrame {
         this.setLayout(null);
         this.setSize(1920,1080);
         PanelElegirViaje PanelV = new PanelElegirViaje();
-        PanelV.setBounds(0,0,1920,1080);
+        PanelV.setBounds(0,0,1920,1000);
         this.add(PanelV);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
