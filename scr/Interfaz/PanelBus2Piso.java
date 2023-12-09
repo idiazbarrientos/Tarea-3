@@ -7,7 +7,12 @@ import java.awt.event.ActionListener;
 import java.io.PipedOutputStream;
 import java.util.ArrayList;
 public class PanelBus2Piso extends JPanel {
-    public PanelBus2Piso(){
+    int indexida, indexvuelta;
+    PanelBus panelBus;
+    public PanelBus2Piso(int indexida, int indexvuelta, PanelBus panelBus){
+        this.indexida = indexida;
+        this.indexvuelta = indexvuelta;
+        this.panelBus = panelBus;
 
         setLayout(new GridLayout(10,0,5,5));
         int AsientosPrimerPiso = 14;

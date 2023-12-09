@@ -76,7 +76,7 @@ public class PanelElegirViaje extends JPanel {
         opcion6.addActionListener(new destinoListener());
 
         BarraDia = new JMenuBar();
-        BarraDia.setBounds(150, 550, 50, 20);
+        BarraDia.setBounds(10, 250, 50, 20);
         this.add(BarraDia);
 
         SeleccionDia= new JMenu("Día");
@@ -98,7 +98,7 @@ public class PanelElegirViaje extends JPanel {
         BarraDia.add(SeleccionDia);
 
         BarraMes = new JMenuBar();
-        BarraMes.setBounds(200,550,50,20);
+        BarraMes.setBounds(60,250,50,20);
         this.add(BarraMes);
         SeleccionMes = new JMenu("Mes");
 
@@ -117,7 +117,7 @@ public class PanelElegirViaje extends JPanel {
         BarraMes.add(SeleccionMes);
 
         BarraAnho = new JMenuBar();
-        BarraAnho.setBounds(250,550,50,20);
+        BarraAnho.setBounds(110,250,50,20);
         this.add(BarraAnho);
         SeleccionAnho = new JMenu("Año");
 
@@ -138,16 +138,17 @@ public class PanelElegirViaje extends JPanel {
 
         JButton siguiente = new JButton("Siguiente");
         this.add(siguiente);
-        siguiente.setBounds(150,700,100,100);
+        siguiente.setBounds(150,350,100,50);
         siguiente.addActionListener(new siguienteListener());
 
         ButtonGroup grupo = new ButtonGroup();
 
         ida = new JRadioButton("Solo Ida");
-        ida.setBounds(150, 450, 100, 100);
+        ida.setBounds(10, 200, 100, 20);
         ida.addActionListener(new idaListener());
+
         vuelta = new JRadioButton("Ida y Vuelta");
-        vuelta.setBounds(275, 450, 100, 100);
+        vuelta.setBounds(120, 200, 130, 20);
         vuelta.addActionListener(new vueltaListener());
 
         grupo.add(ida);
@@ -156,14 +157,14 @@ public class PanelElegirViaje extends JPanel {
         this.add(ida);
         this.add(vuelta);
 
-        this.setBackground(Color.CYAN);
+        this.setBackground(new Color(144, 183, 222));
 
 
     }
 
     public void crearBarraVuelta(){
         BarraDiaVuelta = new JMenuBar();
-        BarraDiaVuelta.setBounds(150, 600, 50, 20);
+        BarraDiaVuelta.setBounds(10, 280, 50, 20);
         this.add(BarraDiaVuelta);
 
         SeleccionDiaVuelta= new JMenu("Día");
@@ -185,7 +186,7 @@ public class PanelElegirViaje extends JPanel {
         BarraDiaVuelta.add(SeleccionDiaVuelta);
 
         BarraMesVuelta = new JMenuBar();
-        BarraMesVuelta.setBounds(200,600,50,20);
+        BarraMesVuelta.setBounds(60,280,50,20);
         this.add(BarraMesVuelta);
         SeleccionMesVuelta = new JMenu("Mes");
 
@@ -204,7 +205,7 @@ public class PanelElegirViaje extends JPanel {
         BarraMesVuelta.add(SeleccionMesVuelta);
 
         BarraAnhoVuelta = new JMenuBar();
-        BarraAnhoVuelta.setBounds(250,600,50,20);
+        BarraAnhoVuelta.setBounds(110,280,50,20);
         this.add(BarraAnhoVuelta);
         SeleccionAnhoVuelta = new JMenu("Año");
 
@@ -242,7 +243,7 @@ public class PanelElegirViaje extends JPanel {
         if(ida.isSelected() || vuelta.isSelected()) {
             panelbus = new PanelBus(this);
             this.add(panelbus);
-            panelbus.setBounds(400,50,500,800);
+            panelbus.setBounds(300,10,450,460);
             System.out.println("ola");
         }
     }
