@@ -12,6 +12,11 @@ public class PanelElegirViaje extends JPanel {
     private JMenu SeleccionDia;
     private JMenu SeleccionMes;
     private JMenu SeleccionAnho;
+
+    private JMenu SeleccionDiaVuelta;
+    private JMenu SeleccionMesVuelta;
+    private JMenu SeleccionAnhoVuelta;
+
     private JMenuBar BarraOrigen;
     private JMenuBar BarraDestino;
     private JMenuBar BarraDia;
@@ -20,9 +25,6 @@ public class PanelElegirViaje extends JPanel {
     private JRadioButton ida;
     private JRadioButton vuelta;
     private PanelBus panelbus;
-    
-
-
 
 
     public PanelElegirViaje() {
@@ -113,7 +115,7 @@ public class PanelElegirViaje extends JPanel {
 
         JButton siguiente = new JButton("Siguiente");
         this.add(siguiente);
-        siguiente.setBounds(150,600,100,100);
+        siguiente.setBounds(150,700,100,100);
         siguiente.addActionListener(new siguienteListener());
 
         ButtonGroup grupo = new ButtonGroup();
@@ -122,6 +124,7 @@ public class PanelElegirViaje extends JPanel {
         ida.setBounds(150, 450, 100, 100);
         vuelta = new JRadioButton("Ida y Vuelta");
         vuelta.setBounds(275, 450, 200, 100);
+        vuelta.addActionListener(new vueltaListener());
 
         grupo.add(ida);
         grupo.add(vuelta);
@@ -132,6 +135,67 @@ public class PanelElegirViaje extends JPanel {
         this.setBackground(Color.CYAN);
 
 
+    }
+
+    public void crearBarraVuelta(){
+        BarraDia = new JMenuBar();
+        BarraDia.setBounds(150, 600, 50, 20);
+        this.add(BarraDia);
+
+        SeleccionDiaVuelta= new JMenu("Día");
+
+        for(int i = 1; i<=31; i++){
+
+            JMenuItem opcion = new JMenuItem(Integer.toString(i));
+            SeleccionDiaVuelta.add(opcion);
+            opcion.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JMenuItem item = (JMenuItem) e.getSource();
+                    SeleccionDiaVuelta.setText(item.getText());
+                }
+            });
+
+        }
+        BarraDia.add(SeleccionDiaVuelta);
+
+        BarraMes = new JMenuBar();
+        BarraMes.setBounds(200,600,50,20);
+        this.add(BarraMes);
+        SeleccionMesVuelta = new JMenu("Mes");
+
+        for(int i =1; i<=12; i++){
+            JMenuItem opcion = new JMenuItem(Integer.toString(i));
+            SeleccionMesVuelta.add(opcion);
+            opcion.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JMenuItem item = (JMenuItem) e.getSource();
+                    SeleccionMesVuelta.setText(item.getText());
+                }
+            });
+        }
+        BarraMes.add(SeleccionMesVuelta);
+
+        BarraAnho = new JMenuBar();
+        BarraAnho.setBounds(250,600,50,20);
+        this.add(BarraAnho);
+        SeleccionAnhoVuelta = new JMenu("Año");
+
+        for(int i = 2023; i<=2025; i++){
+            JMenuItem opcion = new JMenuItem(Integer.toString(i));
+            opcion.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JMenuItem item= (JMenuItem) e.getSource();
+                    SeleccionAnhoVuelta.setText(item.getText());
+                }
+            });
+            SeleccionAnhoVuelta.add(opcion);
+        }
+        BarraAnho.add(SeleccionAnhoVuelta);
+        this.revalidate();
+        this.repaint();
     }
     public void seleccionarBus(){
         if(ida.isSelected() || vuelta.isSelected()) {
@@ -147,6 +211,14 @@ public class PanelElegirViaje extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             seleccionarBus();
+        }
+    }
+
+    private class vueltaListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            crearBarraVuelta();
         }
     }
 }
