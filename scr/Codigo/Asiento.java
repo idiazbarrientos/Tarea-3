@@ -27,7 +27,7 @@ abstract public class Asiento {
             select = true;
         }
     }
-    public void deselected(){
+    public void deselect(){
         select = false;
     }
     void comprar(){
