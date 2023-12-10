@@ -1,6 +1,7 @@
 package Interfaz;
 
 import Codigo.Asiento;
+import Interfaz.ValorPago;
 
 import javax.swing.*;
 import java.awt.*;
