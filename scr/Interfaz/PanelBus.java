@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class PanelBus extends JPanel {
     private JMenu SeleccionHorarios;
@@ -196,8 +197,10 @@ public class PanelBus extends JPanel {
     }
     public int buscarBusVuelta(){
         for(int i = 0; i<busArrayList.size(); i++){
+
             Bus bus=busArrayList.get(i);
-            if(bus.getDia() == diaVuelta && bus.getMes() == mesVuelta && bus.getAnho() == anhoVuelta && bus.getHora() == horarioVuelta && bus.getOrigen() == destino && bus.getDestino() == origen){
+
+            if(Objects.equals(bus.getDia(), diaVuelta) && Objects.equals(bus.getMes(), mesVuelta) && Objects.equals(bus.getAnho(), anhoVuelta) && Objects.equals(bus.getHora(), horarioVuelta) && Objects.equals(bus.getOrigen(), destino) && Objects.equals(bus.getDestino(), origen)){
                 if(busUnPiso2.isSelected() && bus.tipoBus()=="bus1piso"){
                     return i;
                 }

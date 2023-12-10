@@ -81,7 +81,6 @@ public class PanelBus1Piso extends JPanel {
             for(int i = 1; i <=ida.asientoArrayList.size(); i++) {
 
                 array_botones.get(i-1).setText(Integer.toString(i));
-                System.out.print(i +" "+array_botones.get(i-1).asiento.isComprado());
                 Color color_fondo;
 
                 if(array_botones.get(i-1).asiento.isComprado()){

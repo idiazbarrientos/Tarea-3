@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class PanelElegirAsiento extends JPanel {
 
     PanelBus panelBus;
-    int indexvuelta;
+    int indexida, indexvuelta;
     JButton botonSiguiente;
     JButton botonComprar;
 
@@ -24,8 +24,11 @@ public class PanelElegirAsiento extends JPanel {
     PanelPiso2 panelpiso2;
 
     PanelBus1Piso panel1piso;
-    Bus busIda;
+    PanelBus1Piso panelBus1Piso;
+    Bus busIda,busVuelta;
 
+    ArrayList<BotonAsientos> asientos_seleccionados_ida= new ArrayList<>();
+    ArrayList<BotonAsientos> asientos_seleccionados_vuelta;
     /**
      *Aqui dependiendo de la seleccion del tipo de bus y si es ida o vuelta, se genera su respectivo panel de botones
      */
@@ -39,11 +42,15 @@ public class PanelElegirAsiento extends JPanel {
 
         this.panelBus=panelBus;
         this.indexvuelta = indexvuelta;
-
+        this.indexida=indexida;
 
 
 
         busIda = panelBus.busArrayList.get(indexida);
+        if(indexvuelta!=-1) {
+            busVuelta = panelBus.busArrayList.get(indexvuelta);
+        }
+
         System.out.println(busIda.getClass().getSimpleName());
         if(busIda.getClass().getSimpleName().equals("BusUnPiso")) {
 
@@ -87,7 +94,7 @@ public class PanelElegirAsiento extends JPanel {
         if(indexvuelta != -1){
             Bus busVuelta = panelBus.busArrayList.get(indexvuelta);
             if(busVuelta.getClass().getSimpleName().equals("BusUnPiso")){
-                PanelBus1Piso panelBus1Piso = new PanelBus1Piso(indexvuelta, panelBus);
+                panelBus1Piso = new PanelBus1Piso(indexvuelta, panelBus);
                 this.add(panelBus1Piso);
                 panelBus1Piso.setBounds(10,10,240,480);
             }
@@ -103,6 +110,7 @@ public class PanelElegirAsiento extends JPanel {
         botonComprar = new JButton("Comprar");
         this.add(botonComprar);
         botonComprar.setBounds(300,510,100,40);
+        botonComprar.addActionListener(new comprarListener2());
         this.revalidate();
         this.repaint();
 
@@ -113,8 +121,17 @@ public class PanelElegirAsiento extends JPanel {
         this.revalidate();
         this.repaint();
     }
+    public void guardarAsientosSeleccionados(){
+        if(busIda.getClass().getSimpleName().equals("BusUnPiso")) {
+            for(int i = 0; i<panel1piso.array_botones.size(); i++){
+                BotonAsientos boton = panel1piso.array_botones.get(i);
+                if(boton.asiento.isSelect()){
+                    asientos_seleccionados_ida.add(boton);
+                }
+            }
+        }
+    }
     public void comprarAsientosIda(){
-        System.out.println(panel1piso.array_botones.get(10).isSelected());
         if(busIda.getClass().getSimpleName().equals("BusUnPiso")) {
             for(int i = 0; i<panel1piso.array_botones.size(); i++){
 
@@ -132,17 +149,53 @@ public class PanelElegirAsiento extends JPanel {
 
 
     }
+
+    public void comprarAsientosVuelta(){
+        System.out.println("Comprar vuelta");
+        if(busVuelta.getClass().getSimpleName().equals("BusUnPiso")) {
+            for(int i = 0; i<panelBus1Piso.array_botones.size(); i++){
+
+                System.out.println(i+" "+ panelBus1Piso.array_botones.get(i).asiento.isSelect());
+                BotonAsientos boton = panelBus1Piso.array_botones.get(i);
+                if(boton.asiento.isSelect()){
+                    boton.asiento.comprar();
+                    System.out.println(panelBus1Piso.array_botones.get(i).asiento.isComprado());
+                }
+            }
+
+        }
+        System.out.println(asientos_seleccionados_ida);
+        System.out.println(indexida);
+        System.out.println(indexvuelta);
+
+        for(int i=0; i<asientos_seleccionados_ida.size(); i++){
+            BotonAsientos boton = asientos_seleccionados_ida.get(i);
+            boton.asiento.comprar();
+        }
+        panelBus1Piso.repaint();
+        panelBus1Piso.refresh();
+        this.repaint();
+    }
     private class siguienteListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            guardarAsientosSeleccionados();
             borrarAsientos();
             dibujarBusVuelta();
+
+
         }
     }
     private class comprarListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             comprarAsientosIda();
+        }
+    }
+    private class comprarListener2 implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            comprarAsientosVuelta();
         }
     }
 }
