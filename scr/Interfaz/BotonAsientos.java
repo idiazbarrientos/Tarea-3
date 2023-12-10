@@ -1,6 +1,7 @@
 package Interfaz;
 
 import Codigo.Asiento;
+import Interfaz.ValorPago;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +26,7 @@ public class BotonAsientos extends JButton {
                     asiento.deselect();
                 }
                 setColor();
+                ValorPago.getInstance().updatePrecio();
             }
 
         });
