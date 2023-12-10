@@ -145,6 +145,24 @@ public class PanelElegirAsiento extends JPanel {
             panel1piso.repaint();
             panel1piso.refresh();
         }
+        if(busIda.getClass().getSimpleName().equals("BusDosPisos")){
+            for(int i = 0; i<panelpiso1.botonAsientosArrayList.size(); i++){
+                BotonAsientos boton = panelpiso1.botonAsientosArrayList.get(i);
+                if(boton.asiento.isSelect()){
+                    boton.asiento.comprar();
+                }
+            }
+            panelpiso1.repaint();
+            panelpiso1.refresh();
+            for(int i = 0; i<panelpiso2.botonAsientosArrayList.size(); i++){
+                BotonAsientos boton = panelpiso2.botonAsientosArrayList.get(i);
+                if(boton.asiento.isSelect()){
+                    boton.asiento.comprar();
+                }
+            }
+            panelpiso2.repaint();
+            panelpiso2.refresh();
+        }
         this.repaint();
 
 

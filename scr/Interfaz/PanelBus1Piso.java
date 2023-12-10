@@ -73,8 +73,6 @@ public class PanelBus1Piso extends JPanel {
             array_botones=new ArrayList<>();
             BusUnPiso ida = (BusUnPiso) panelBus.busArrayList.get(busIndiceIda);
             setLayout(new GridLayout(0, 4, 5, 5));
-
-
             for(int i = 1; i <= ida.asientoArrayList.size(); i++){
                 array_botones.add(new BotonAsientos(ida.asientoArrayList.get(i-1)));
             }
@@ -113,7 +111,6 @@ public class PanelBus1Piso extends JPanel {
                 this.revalidate();;
                 this.repaint();
             }
-
         }
 }
 
