@@ -2,6 +2,7 @@ package Interfaz;
 
 import Codigo.Bus;
 import Codigo.BusUnPiso;
+import Interfaz.ValorPago;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -47,6 +48,12 @@ public class PanelElegirAsiento extends JPanel {
             botonComprar = new JButton("Comprar");
             this.add(botonComprar);
             botonComprar.setBounds(300,510,100,40);
+            botonComprar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    updatePrecio();
+                }
+            });
         }
         this.revalidate();
         this.repaint();
