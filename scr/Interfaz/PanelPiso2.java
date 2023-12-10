@@ -29,7 +29,10 @@ public class PanelPiso2 extends JPanel {
         for(int i = 1; i<=nAsientos; i++){
             botonAsientosArrayList.get(i-1).setText(Integer.toString(i));
             Color color_fondo;
-            if(botonAsientosArrayList.get(i-1).asiento.isComprado()){
+            if(botonAsientosArrayList.get(i-1).asiento.isSelect()){
+                color_fondo = Color.BLUE;
+            }
+            else if(botonAsientosArrayList.get(i-1).asiento.isComprado()){
                 color_fondo=Color.red;
             }
             else if(botonAsientosArrayList.get(i-1).asiento.getType() == TipoAsiento.SALON_CAMA){
