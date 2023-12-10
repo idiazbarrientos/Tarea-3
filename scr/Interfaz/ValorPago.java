@@ -16,7 +16,7 @@ public class ValorPago extends JPanel {
         return instance;
     }
     public void updatePrecio(){
-        JLabel total = new JLabel("Precio Total : $"+ //aqui poner el valor de precio de los asientos)
+        JLabel total = new JLabel("Precio Total : $");//aqui poner el valor de precio de los asientos)
     }
 
 }

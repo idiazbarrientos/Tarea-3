@@ -14,40 +14,85 @@ import java.util.ArrayList;
 public class PanelPiso1 extends JPanel {
     PanelBus panelBus;
     int indexida;
+    public ArrayList<BotonAsientos> botonAsientosArrayList = new ArrayList<BotonAsientos>();
     public PanelPiso1(int indexida, PanelBus panelBus){
         this.indexida = indexida;
         this.panelBus = panelBus;
         this.setLayout(new GridLayout(0,4));
         BusDosPisos busIda = (BusDosPisos) panelBus.busArrayList.get(indexida);
         int nAsientos = busIda.piso1.size();
-        ArrayList<BotonAsientos> botonAsientosArrayList = new ArrayList<BotonAsientos>();
+
         for(int i = 0; i<nAsientos; i++){
             BotonAsientos asiento = new BotonAsientos(busIda.piso1.get(i));
             botonAsientosArrayList.add(asiento);
         }
-        for(int i = 1; i<=nAsientos; i++){
-            botonAsientosArrayList.get(i-1).setText(Integer.toString(i));
+        for(int i = 1; i<=nAsientos; i++) {
+            botonAsientosArrayList.get(i - 1).setText(Integer.toString(i));
             Color color_fondo;
-            if(botonAsientosArrayList.get(i-1).asiento.getType() == TipoAsiento.SALON_CAMA){
+            if (botonAsientosArrayList.get(i - 1).asiento.isComprado()) {
+                color_fondo = Color.red;
+            } else if (botonAsientosArrayList.get(i - 1).asiento.getType() == TipoAsiento.SALON_CAMA) {
                 color_fondo = Color.orange;
-            }
-            else{
+            } else {
                 color_fondo = Color.pink;
             }
-            botonAsientosArrayList.get(i-1).addActionListener(new ActionListener() {
+            botonAsientosArrayList.get(i - 1).setBackground(color_fondo);
+            botonAsientosArrayList.get(i - 1).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    JButton btn = (JButton) e.getSource();
+                    BotonAsientos btn = (BotonAsientos) e.getSource();
                     if (btn.getBackground() == Color.GREEN) {
+                        btn.asiento.deselect();
                         btn.setBackground(color_fondo); // Si está seleccionado, se deselecciona
-                    } else {
+                    } else if (!btn.asiento.isComprado()) {
+                        btn.asiento.select();
                         btn.setBackground(Color.GREEN); // Si no está seleccionado, se selecciona (cambia a verde)
                     }
                 }
             });
-            botonAsientosArrayList.get(i-1).setBackground(color_fondo);
-            this.add(botonAsientosArrayList.get(i-1));
-            this.revalidate();;
+
+            this.add(botonAsientosArrayList.get(i - 1));
+            this.revalidate();
+            ;
+            this.repaint();
+        }
+    }
+    public void refresh(){
+        this.removeAll();
+        BusDosPisos busIda = (BusDosPisos) panelBus.busArrayList.get(indexida);
+        int nAsientos = busIda.piso1.size();
+
+        for(int i = 0; i<nAsientos; i++){
+            BotonAsientos asiento = new BotonAsientos(busIda.piso1.get(i));
+            botonAsientosArrayList.add(asiento);
+        }
+        for(int i = 1; i<=nAsientos; i++) {
+            botonAsientosArrayList.get(i - 1).setText(Integer.toString(i));
+            Color color_fondo;
+            if (botonAsientosArrayList.get(i - 1).asiento.isComprado()) {
+                color_fondo = Color.red;
+            } else if (botonAsientosArrayList.get(i - 1).asiento.getType() == TipoAsiento.SALON_CAMA) {
+                color_fondo = Color.orange;
+            } else {
+                color_fondo = Color.pink;
+            }
+            botonAsientosArrayList.get(i - 1).setBackground(color_fondo);
+            botonAsientosArrayList.get(i - 1).addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    BotonAsientos btn = (BotonAsientos) e.getSource();
+                    if (btn.getBackground() == Color.GREEN) {
+                        btn.asiento.deselect();
+                        btn.setBackground(color_fondo); // Si está seleccionado, se deselecciona
+                    } else if (!btn.asiento.isComprado()) {
+                        btn.asiento.select();
+                        btn.setBackground(Color.GREEN); // Si no está seleccionado, se selecciona (cambia a verde)
+                    }
+                }
+            });
+
+            this.add(botonAsientosArrayList.get(i - 1));
+            this.revalidate();
             this.repaint();
         }
     }

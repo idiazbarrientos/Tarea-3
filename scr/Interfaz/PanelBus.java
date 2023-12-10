@@ -157,23 +157,18 @@ public class PanelBus extends JPanel {
             }
         }
 
-        if(busUnPiso.isSelected()){
+        panelElegirAsiento = new PanelElegirAsiento(indexida, indexvuelta,this);
+        panelElegirViaje.add(panelElegirAsiento);
+        panelElegirAsiento.setBounds(760,10,1150,990);
+        panelElegirAsiento.setBackground(new Color(156, 207, 155));
+        panelElegirAsiento.repaint();
+        panelElegirAsiento.revalidate();
+        this.revalidate();
+        this.repaint();
+        panelElegirViaje.repaint();
+        panelElegirViaje.revalidate();
 
-            panelElegirAsiento = new PanelElegirAsiento(indexida, indexvuelta,this);
-            panelElegirViaje.add(panelElegirAsiento);
-            panelElegirAsiento.setBounds(760,10,1150,990);
-            panelElegirAsiento.setBackground(new Color(156, 207, 155));
-            panelElegirViaje.repaint();
-            panelElegirViaje.revalidate();
-            System.out.println("ola");
-        } else if (busDosPisos.isSelected()){
-            panelElegirAsiento = new PanelElegirAsiento(indexida, indexvuelta,this);
-            panelElegirViaje.add(panelElegirAsiento);
-            panelElegirAsiento.setBounds(760,10,1150,990);
-            panelElegirAsiento.setBackground(new Color(156, 207, 155));
-            panelElegirViaje.repaint();
-            panelElegirViaje.revalidate();
-        }
+
     }
     public int buscarBusIda(){
         for(int i = 0; i<busArrayList.size(); i++){

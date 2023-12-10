@@ -42,9 +42,9 @@ public class Asiento {
     public void deselect(){
         select = false;
     }
-    void comprar(){
-        this.comprado = true;
-        this.select = false;
+    public void comprar(){
+        comprado = true;
+        select = false;
     }
     public boolean isSelect(){
         return select;
