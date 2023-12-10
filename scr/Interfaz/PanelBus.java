@@ -40,6 +40,11 @@ public class PanelBus extends JPanel {
     private String destino;
     private String horarioVuelta;
     String tipobusvuelta;
+
+    /**
+     * Aqui se planifica el tipo de bus que se desea para solo la ida o ida y vuelta y el horario de salida del mismo
+     *
+     */
     public PanelBus(PanelElegirViaje panelElegirViaje){
 
         origen=panelElegirViaje.origen;
@@ -134,6 +139,10 @@ public class PanelBus extends JPanel {
         }
 
     }
+
+    /**
+     * Aqui dependiendo de la seleccion del bus, se genera su respectivo piso de asientos
+     */
     public void selecionarTipoDeBus(){
         int indexida, indexvuelta = -1;
         indexida=buscarBusIda();

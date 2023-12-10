@@ -8,6 +8,10 @@ import javax.swing.*;
 public class PanelElegirAsiento extends JPanel {
 
     PanelBus panelBus;
+
+    /**
+     *Aqui dependiendo de la seleccion del tipo de bus y si es ida o vuelta, se genera su respectivo panel de botones
+     */
     public PanelElegirAsiento(int indexida, int indexvuelta, PanelBus panelBus) {
         this.setLayout(null);
         this.panelBus=panelBus;

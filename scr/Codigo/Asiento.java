@@ -1,5 +1,9 @@
 package Codigo;
 
+/**
+ * Representa el asiento del bus
+ */
+
 public class Asiento {
 
     private int precio;
@@ -8,6 +12,11 @@ public class Asiento {
     private boolean select;
     private boolean comprado;
 
+    /**
+     *
+     * @param numeroAsiento numero del asiento
+     * @param type tipo de asiento
+     */
     public Asiento(int numeroAsiento, TipoAsiento type) {
         this.numeroAsiento = numeroAsiento;
         this.type=type;

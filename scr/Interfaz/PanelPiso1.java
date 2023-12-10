@@ -8,7 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
+/**
+ * Aqui se enceuntran los botones que representan los asientos del piso1 del bus de 2 pisos
+ */
 public class PanelPiso1 extends JPanel {
     PanelBus panelBus;
     int indexida, indexvuelta;

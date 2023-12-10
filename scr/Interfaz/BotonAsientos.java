@@ -10,6 +10,10 @@ import java.awt.event.ActionListener;
 public class BotonAsientos extends JButton {
     Asiento asiento;
 
+    /**
+     *
+     * @param asiento asiento al que se hace referencia como boton
+     */
     public BotonAsientos(Asiento asiento) {
         this.asiento = asiento;
         setColor();
@@ -20,12 +24,16 @@ public class BotonAsientos extends JButton {
                 if (asiento.isSelect()) {
                     asiento.deselect();
                 }
-
+                setColor();
             }
+
         });
 
+        this.setVisible(true);
     }
-
+/**
+ * El cambio de color que se realiza al momento de seleccionar o comprar un asiento/boton
+ */
     void setColor() {
         if (asiento.isSelect()) {
             this.setBackground(Color.BLUE);

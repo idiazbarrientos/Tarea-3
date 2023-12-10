@@ -12,6 +12,9 @@ import java.util.ArrayList;
 
 import static Codigo.TipoAsiento.SEMI_CAMA;
 
+/**
+ * Aqui se enceuntran los botones que representan los asientos del bus de 1 piso
+ */
 public class PanelBus1Piso extends JPanel {
     int busIndiceIda, busIndiceVuelta;
     PanelBus panelBus;

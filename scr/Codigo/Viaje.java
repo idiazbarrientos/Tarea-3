@@ -1,5 +1,8 @@
 package Codigo;
 
+/**
+ * Representa el viaje
+ */
 public class Viaje {
     private int nEstandar;
     private int nSemiCama;

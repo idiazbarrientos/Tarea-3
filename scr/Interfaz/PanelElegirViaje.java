@@ -39,6 +39,9 @@ public class PanelElegirViaje extends JPanel {
 
     String destino;
 
+    /**
+     * Aqui se planifica la parte de Destino y Origen, si es solo ida o con vuelta, la fecha, de un viaje
+     */
     public PanelElegirViaje() {
         this.setLayout(null);
         JMenuItem opcion1 = new JMenuItem("Concepcion");
@@ -162,6 +165,9 @@ public class PanelElegirViaje extends JPanel {
 
     }
 
+    /**
+     * Parte en donde cambia la interfaz si se desea un viaje con ida y vuelta
+     */
     public void crearBarraVuelta(){
         BarraDiaVuelta = new JMenuBar();
         BarraDiaVuelta.setBounds(10, 280, 50, 20);
