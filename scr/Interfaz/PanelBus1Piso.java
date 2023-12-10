@@ -16,11 +16,10 @@ import static Codigo.TipoAsiento.SEMI_CAMA;
  * Aqui se enceuntran los botones que representan los asientos del bus de 1 piso
  */
 public class PanelBus1Piso extends JPanel {
-    int busIndiceIda, busIndiceVuelta;
+    int busIndiceIda;
     PanelBus panelBus;
-        public PanelBus1Piso(int busIndiceIda, int busIndiceVuelta, PanelBus panelBus){
+        public PanelBus1Piso(int busIndiceIda, PanelBus panelBus){
             this.busIndiceIda = busIndiceIda;
-            this.busIndiceVuelta = busIndiceVuelta;
             this.panelBus = panelBus;
             BusUnPiso ida = (BusUnPiso) panelBus.busArrayList.get(busIndiceIda);
             setLayout(new GridLayout(0, 4, 5, 5));

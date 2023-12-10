@@ -13,10 +13,9 @@ import java.util.ArrayList;
  */
 public class PanelPiso1 extends JPanel {
     PanelBus panelBus;
-    int indexida, indexvuelta;
-    public PanelPiso1(int indexida, int indexvuelta, PanelBus panelBus){
+    int indexida;
+    public PanelPiso1(int indexida, PanelBus panelBus){
         this.indexida = indexida;
-        this.indexvuelta = indexvuelta;
         this.panelBus = panelBus;
         this.setLayout(new GridLayout(0,4));
         BusDosPisos busIda = (BusDosPisos) panelBus.busArrayList.get(indexida);
