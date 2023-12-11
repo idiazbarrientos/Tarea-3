@@ -18,6 +18,12 @@ public class BotonAsientos extends JButton {
     public BotonAsientos(Asiento asiento) {
         this.asiento = asiento;
     }
+    public void selectAsiento(){
+        this.asiento.select();
+    }
+    public void deselectAsiento(){
+        this.asiento.deselect();
+    }
 
 
 }

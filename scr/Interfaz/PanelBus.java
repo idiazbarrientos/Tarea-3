@@ -174,7 +174,7 @@ public class PanelBus extends JPanel {
     public int buscarBusIda(){
         for(int i = 0; i<busArrayList.size(); i++){
             Bus bus=busArrayList.get(i);
-            if(bus.getDia() == diaIda && bus.getMes() == mesIda && bus.getAnho() == anhoIda && bus.getHora() == horarioIda && bus.getOrigen() == origen && bus.getDestino() == destino){
+            if(Objects.equals(bus.getDia(), diaIda) && Objects.equals(bus.getMes(), mesIda) && Objects.equals(bus.getAnho(), anhoIda) && Objects.equals(bus.getHora(), horarioIda) && Objects.equals(bus.getOrigen(), origen) && Objects.equals(bus.getDestino(), destino)){
                if(busUnPiso.isSelected() && bus.tipoBus()=="bus1piso"){
                    return i;
                }

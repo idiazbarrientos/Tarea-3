@@ -52,17 +52,18 @@ public class PanelBus1Piso extends JPanel {
                 array_botones.get(i-1).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        panelElegirAsiento.updateResumenCompra();
+
                         BotonAsientos btn = (BotonAsientos) e.getSource();
                         if (btn.getBackground() == Color.GREEN) {
-                            btn.asiento.deselect();
+                            btn.deselectAsiento();
                             btn.setBackground(color_fondo); // Si está seleccionado, se deselecciona
                         } else if(!btn.asiento.isComprado()){
-                            btn.asiento.select();
+                            btn.selectAsiento();
 
                             System.out.println("Listener"+btn.asiento.isSelect());
                             btn.setBackground(Color.GREEN); // Si no está seleccionado, se selecciona (cambia a verde)
                         }
+                        panelElegirAsiento.updateResumenCompra();
                     }
                 });
 

@@ -22,5 +22,5 @@ public class ValorPago extends JPanel {
         this.updateUI();
         JLabel total = new JLabel("Precio Total : $");//aqui poner el valor de precio de los asientos)
     }
-    
+
 }

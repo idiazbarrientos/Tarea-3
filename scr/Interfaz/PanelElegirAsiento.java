@@ -29,9 +29,12 @@ public class PanelElegirAsiento extends JPanel {
 
     PanelResumenCompra panelrcompra;
     Bus busIda,busVuelta;
+    int n_salonc;
+    int n_semic;
 
     ArrayList<BotonAsientos> asientos_seleccionados_ida= new ArrayList<>();
-    ArrayList<BotonAsientos> asientos_seleccionados_vuelta;
+    ArrayList<BotonAsientos> asientos_resumen_compra_ida= new ArrayList<>();
+    ArrayList<BotonAsientos> asientos_resumen_compra_vuelta= new ArrayList<>();
     /**
      *Aqui dependiendo de la seleccion del tipo de bus y si es ida o vuelta, se genera su respectivo panel de botones
      */
@@ -239,6 +242,121 @@ public class PanelElegirAsiento extends JPanel {
 
 
     public void updateResumenCompra(){
+        asientos_resumen_compra_ida.clear();
+        if(busIda.getClass().getSimpleName().equals("BusUnPiso"))
+        {
+
+            System.out.println("Bus 1 pisoo wiiii");
+            for(int i = 0; i<panel1piso.array_botones.size(); i++){
+                BotonAsientos boton = panel1piso.array_botones.get(i);
+                if(boton.asiento.isSelect()){
+                    asientos_resumen_compra_ida.add(boton);
+                }
+            }
+        }else if(busIda.getClass().getSimpleName()=="BusDosPisos"){
+            for (int i = 0; i < panelpiso1.botonAsientosArrayList.size(); i++) {
+                BotonAsientos boton = panelpiso1.botonAsientosArrayList.get(i);
+                if (boton.asiento.isSelect()) {
+                    asientos_resumen_compra_ida.add(boton);
+                }
+            }
+            for (int i = 0; i < panelpiso2.botonAsientosArrayList.size(); i++) {
+                BotonAsientos boton = panelpiso2.botonAsientosArrayList.get(i);
+                if (boton.asiento.isSelect()) {
+                    asientos_resumen_compra_ida.add(boton);
+                }
+            }
+        }
+        System.out.println("Asientos seleccionados: " +asientos_resumen_compra_ida.size());
+            panelrcompra.removeAll();
+            JLabel label_ida=new JLabel("Ida:");
+            JLabel label_origen_i=new JLabel("Origen: "+busIda.getOrigen());
+            JLabel label_destino_i = new JLabel("Destino: " + busIda.getDestino());
+            n_salonc=0;
+            n_semic=0;
+            String numeros_salonc = "",numeros_semic="";
+            for(int i=0; i<asientos_resumen_compra_ida.size(); i++){
+                BotonAsientos asiento=asientos_resumen_compra_ida.get(i);
+                if(asiento.asiento.getType()==TipoAsiento.SALON_CAMA){
+                    numeros_salonc=numeros_salonc+asiento.asiento.getNumeroAsiento()+" ";
+                    n_salonc+=1;
+                }else{
+                    numeros_semic=numeros_semic+asiento.asiento.getNumeroAsiento()+" ";
+                    n_semic+=1;
+                }
+
+            }
+                JLabel salon_cama_i=new JLabel("Salón Cama");
+                JLabel nsac_i=new JLabel(Integer.toString(n_salonc));
+                JLabel precio_u_sac_i=new JLabel("10000");
+                JLabel num_asientos_sac_i=new JLabel(numeros_salonc);
+                JLabel precio_total_sac_i=new JLabel(Integer.toString(n_salonc*10000));
+
+                panelrcompra.add(label_ida);
+                label_ida.setBounds(10,10,100,10);
+                panelrcompra.add(label_origen_i);
+                label_origen_i.setBounds(10,25,150,10);
+                panelrcompra.add(label_destino_i);
+                label_destino_i.setBounds(170,25,150,10);
+
+                panelrcompra.add(salon_cama_i);
+                salon_cama_i.setBounds(10,40,80,10);
+                panelrcompra.add(nsac_i);
+                nsac_i.setBounds(120,40,10,10);
+                panelrcompra.add(precio_u_sac_i);
+                precio_u_sac_i.setBounds(135,40,80,10);
+                panelrcompra.add(num_asientos_sac_i);
+                num_asientos_sac_i.setBounds(220,40,200,10);
+                panelrcompra.add(precio_total_sac_i);
+                precio_total_sac_i.setBounds(425,40,40,10);
+
+        JLabel semi_cama_i=new JLabel("Semi-Cama");
+        JLabel nsemic_i=new JLabel(Integer.toString(n_semic));
+        JLabel precio_u_sec_i=new JLabel("8000");
+        JLabel num_asientos_sec_i=new JLabel(numeros_semic);
+        JLabel precio_total_sec_i=new JLabel(Integer.toString(n_semic*8000));
+
+        panelrcompra.add(semi_cama_i);
+        semi_cama_i.setBounds(10,55,80,10);
+        panelrcompra.add(nsemic_i);
+        nsemic_i.setBounds(120,55,10,10);
+        panelrcompra.add(precio_u_sec_i);
+        precio_u_sec_i.setBounds(135,55,80,10);
+        panelrcompra.add(num_asientos_sec_i);
+        num_asientos_sec_i.setBounds(220,55,200,10);
+        panelrcompra.add(precio_total_sec_i);
+        precio_total_sec_i.setBounds(425,55,40,10);
+
+
+        if(indexvuelta!=-1){
+            if(busVuelta.getClass().getSimpleName().equals("BusUnPiso")){
+               if(panelBus1Piso!=null){
+                   for(int i = 0; i<panelBus1Piso.array_botones.size(); i++){
+                       BotonAsientos boton = panelBus1Piso.array_botones.get(i);
+                       if(boton.asiento.isSelect()){
+                           asientos_resumen_compra_vuelta.add(boton);
+                       }
+                   }
+               }
+            }else{
+                if(panelPiso1!=null) {
+                    for (int i = 0; i < panelPiso1.botonAsientosArrayList.size(); i++) {
+                        BotonAsientos boton = panelPiso1.botonAsientosArrayList.get(i);
+                        if (boton.asiento.isSelect()) {
+                            asientos_resumen_compra_vuelta.add(boton);
+                        }
+                    }
+                }
+                if(panelPiso2!=null){
+                    for(int i = 0; i<panelPiso2.botonAsientosArrayList.size(); i++){
+                        BotonAsientos boton = panelPiso2.botonAsientosArrayList.get(i);
+                        if(boton.asiento.isSelect()){
+                            asientos_resumen_compra_vuelta.add(boton);
+                        }
+                    }
+                }
+            }
+        }
 
     }
     private class siguienteListener implements ActionListener {
