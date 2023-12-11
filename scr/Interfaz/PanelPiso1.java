@@ -31,7 +31,10 @@ public class PanelPiso1 extends JPanel {
         for(int i = 1; i<=nAsientos; i++) {
             botonAsientosArrayList.get(i - 1).setText(Integer.toString(i));
             Color color_fondo;
-            if (botonAsientosArrayList.get(i - 1).asiento.isComprado()) {
+            if(botonAsientosArrayList.get(i - 1).asiento.isSelect()){
+                color_fondo=Color.BLUE;
+            }
+            else if (botonAsientosArrayList.get(i - 1).asiento.isComprado()) {
                 color_fondo = Color.red;
             } else if (botonAsientosArrayList.get(i - 1).asiento.getType() == TipoAsiento.SALON_CAMA) {
                 color_fondo = Color.orange;
@@ -43,14 +46,14 @@ public class PanelPiso1 extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     BotonAsientos btn = (BotonAsientos) e.getSource();
-                    panelElegirAsiento.updateResumenCompra();
                     if (btn.getBackground() == Color.GREEN) {
-                        btn.asiento.deselect();
+                        btn.deselectAsiento();
                         btn.setBackground(color_fondo); // Si está seleccionado, se deselecciona
                     } else if (!btn.asiento.isComprado()) {
-                        btn.asiento.select();
+                        btn.selectAsiento();
                         btn.setBackground(Color.GREEN); // Si no está seleccionado, se selecciona (cambia a verde)
                     }
+                    panelElegirAsiento.updateResumenCompra();
                 }
             });
 
@@ -87,15 +90,16 @@ public class PanelPiso1 extends JPanel {
             botonAsientosArrayList.get(i - 1).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    panelElegirAsiento.updateResumenCompra();
+
                     BotonAsientos btn = (BotonAsientos) e.getSource();
                     if (btn.getBackground() == Color.GREEN) {
-                        btn.asiento.deselect();
+                        btn.deselectAsiento();
                         btn.setBackground(color_fondo); // Si está seleccionado, se deselecciona
                     } else if (!btn.asiento.isComprado()) {
-                        btn.asiento.select();
+                        btn.selectAsiento();
                         btn.setBackground(Color.GREEN); // Si no está seleccionado, se selecciona (cambia a verde)
                     }
+                    panelElegirAsiento.updateResumenCompra();
                 }
             });
 

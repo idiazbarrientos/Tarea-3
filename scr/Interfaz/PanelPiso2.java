@@ -30,7 +30,7 @@ public class PanelPiso2 extends JPanel {
             botonAsientosArrayList.add(asiento);
         }
         for(int i = 1; i<=nAsientos; i++){
-            botonAsientosArrayList.get(i-1).setText(Integer.toString(i));
+            botonAsientosArrayList.get(i-1).setText(Integer.toString(botonAsientosArrayList.get(i-1).asiento.getNumeroAsiento()));
             Color color_fondo;
             if(botonAsientosArrayList.get(i-1).asiento.isSelect()){
                 color_fondo = Color.BLUE;
@@ -48,15 +48,16 @@ public class PanelPiso2 extends JPanel {
             botonAsientosArrayList.get(i-1).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    panelElegirAsiento.updateResumenCompra();
+
                     BotonAsientos btn = (BotonAsientos) e.getSource();
                     if (btn.getBackground() == Color.GREEN) {
-                        btn.asiento.deselect();
+                        btn.deselectAsiento();
                         btn.setBackground(color_fondo); // Si está seleccionado, se deselecciona
                     } else if(!btn.asiento.isComprado()){
-                        btn.asiento.select();
+                        btn.selectAsiento();
                         btn.setBackground(Color.GREEN); // Si no está seleccionado, se selecciona (cambia a verde)
                     }
+                    panelElegirAsiento.updateResumenCompra();
                 }
             });
 
@@ -77,7 +78,7 @@ public class PanelPiso2 extends JPanel {
             botonAsientosArrayList.add(asiento);
         }
         for(int i = 1; i<=nAsientos; i++) {
-            botonAsientosArrayList.get(i - 1).setText(Integer.toString(i));
+            botonAsientosArrayList.get(i-1).setText(Integer.toString(botonAsientosArrayList.get(i-1).asiento.getNumeroAsiento()));
             Color color_fondo;
             if(botonAsientosArrayList.get(i-1).asiento.isSelect()){
                 color_fondo = Color.BLUE;
@@ -93,15 +94,16 @@ public class PanelPiso2 extends JPanel {
             botonAsientosArrayList.get(i - 1).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    panelElegirAsiento.updateResumenCompra();
+
                     BotonAsientos btn = (BotonAsientos) e.getSource();
                     if (btn.getBackground() == Color.GREEN) {
-                        btn.asiento.deselect();
+                        btn.deselectAsiento();
                         btn.setBackground(color_fondo); // Si está seleccionado, se deselecciona
                     } else if (!btn.asiento.isComprado()) {
-                        btn.asiento.select();
+                        btn.selectAsiento();
                         btn.setBackground(Color.GREEN); // Si no está seleccionado, se selecciona (cambia a verde)
                     }
+                    panelElegirAsiento.updateResumenCompra();
                 }
             });
 

@@ -184,12 +184,12 @@ public class PanelBus extends JPanel {
             }
         }
         if(busUnPiso.isSelected()){
-            BusUnPiso nuevobus=new BusUnPiso(busArrayList.size()+1,diaIda,mesIda,anhoIda,horarioIda,origen,destino);
+            BusUnPiso nuevobus=new BusUnPiso(busArrayList.size()+1,diaIda,mesIda,anhoIda,horarioIda,destino,origen);
             busArrayList.add(nuevobus);
             return busArrayList.size()-1;
         }
         if(busDosPisos.isSelected()){
-            BusDosPisos nuevobus=new BusDosPisos(busArrayList.size()+1,diaIda,mesIda,anhoIda,horarioIda,origen,destino);
+            BusDosPisos nuevobus=new BusDosPisos(busArrayList.size()+1,diaIda,mesIda,anhoIda,horarioIda,destino,origen);
             busArrayList.add(nuevobus);
             return busArrayList.size()-1;
         }

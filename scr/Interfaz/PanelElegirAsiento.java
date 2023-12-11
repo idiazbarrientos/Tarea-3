@@ -29,8 +29,8 @@ public class PanelElegirAsiento extends JPanel {
 
     PanelResumenCompra panelrcompra;
     Bus busIda,busVuelta;
-    int n_salonc;
-    int n_semic;
+    int n_salonc,n_salonc_v;
+    int n_semic,n_semic_v;
 
     ArrayList<BotonAsientos> asientos_seleccionados_ida= new ArrayList<>();
     ArrayList<BotonAsientos> asientos_resumen_compra_ida= new ArrayList<>();
@@ -243,6 +243,7 @@ public class PanelElegirAsiento extends JPanel {
 
     public void updateResumenCompra(){
         asientos_resumen_compra_ida.clear();
+        asientos_resumen_compra_vuelta.clear();
         if(busIda.getClass().getSimpleName().equals("BusUnPiso"))
         {
 
@@ -253,7 +254,8 @@ public class PanelElegirAsiento extends JPanel {
                     asientos_resumen_compra_ida.add(boton);
                 }
             }
-        }else if(busIda.getClass().getSimpleName()=="BusDosPisos"){
+        }else if(busIda.getClass().getSimpleName().equals("BusDosPisos")){
+            System.out.println("Bus dos pisos wiiii");
             for (int i = 0; i < panelpiso1.botonAsientosArrayList.size(); i++) {
                 BotonAsientos boton = panelpiso1.botonAsientosArrayList.get(i);
                 if (boton.asiento.isSelect()) {
@@ -272,6 +274,8 @@ public class PanelElegirAsiento extends JPanel {
             JLabel label_ida=new JLabel("Ida:");
             JLabel label_origen_i=new JLabel("Origen: "+busIda.getOrigen());
             JLabel label_destino_i = new JLabel("Destino: " + busIda.getDestino());
+            JLabel label_fecha_i=new JLabel(busIda.getDia()+"-"+busIda.getMes()+"-"+busIda.getAnho());
+            JLabel label_hora_i=new JLabel(busIda.getHora());
             n_salonc=0;
             n_semic=0;
             String numeros_salonc = "",numeros_semic="";
@@ -298,6 +302,10 @@ public class PanelElegirAsiento extends JPanel {
                 label_origen_i.setBounds(10,25,150,10);
                 panelrcompra.add(label_destino_i);
                 label_destino_i.setBounds(170,25,150,10);
+                panelrcompra.add(label_fecha_i);
+                label_fecha_i.setBounds(325,25,80,10);
+                panelrcompra.add(label_hora_i);
+                label_hora_i.setBounds(410,25,150,10);
 
                 panelrcompra.add(salon_cama_i);
                 salon_cama_i.setBounds(10,40,80,10);
@@ -325,7 +333,7 @@ public class PanelElegirAsiento extends JPanel {
         panelrcompra.add(num_asientos_sec_i);
         num_asientos_sec_i.setBounds(220,55,200,10);
         panelrcompra.add(precio_total_sec_i);
-        precio_total_sec_i.setBounds(425,55,40,10);
+        precio_total_sec_i.setBounds(425,55,80,10);
 
 
         if(indexvuelta!=-1){
@@ -356,7 +364,75 @@ public class PanelElegirAsiento extends JPanel {
                     }
                 }
             }
+            JLabel label_vuelta=new JLabel("Vuelta:");
+            JLabel label_origen_v=new JLabel("Origen: "+busVuelta.getOrigen());
+            JLabel label_destino_v = new JLabel("Destino: " + busVuelta.getDestino());
+            JLabel label_fecha_v=new JLabel(busVuelta.getDia()+"-"+busVuelta.getMes()+"-"+busVuelta.getAnho());
+            JLabel label_hora_v=new JLabel(busVuelta.getHora());
+            n_salonc_v=0;
+            n_semic_v=0;
+            String numeros_salonc_v = "",numeros_semic_v="";
+            for(int i=0; i<asientos_resumen_compra_vuelta.size(); i++){
+                BotonAsientos asiento=asientos_resumen_compra_vuelta.get(i);
+                if(asiento.asiento.getType()==TipoAsiento.SALON_CAMA){
+                    numeros_salonc_v=numeros_salonc_v+asiento.asiento.getNumeroAsiento()+" ";
+                    n_salonc_v+=1;
+                }else{
+                    numeros_semic_v=numeros_semic_v+asiento.asiento.getNumeroAsiento()+" ";
+                    n_semic_v+=1;
+                }
+
+            }
+            JLabel salon_cama_v=new JLabel("Salón Cama");
+            JLabel nsac_v=new JLabel(Integer.toString(n_salonc_v));
+            JLabel precio_u_sac_v=new JLabel("10000");
+            JLabel num_asientos_sac_v=new JLabel(numeros_salonc_v);
+            JLabel precio_total_sac_v=new JLabel(Integer.toString(n_salonc_v*10000));
+
+
+            panelrcompra.add(label_vuelta);
+            label_vuelta.setBounds(10,70,100,10);
+            panelrcompra.add(label_origen_v);
+            label_origen_v.setBounds(10,85,150,10);
+            panelrcompra.add(label_destino_v);
+            label_destino_v.setBounds(170,85,150,10);
+            panelrcompra.add(label_fecha_v);
+            label_fecha_v.setBounds(325,85,80,10);
+            panelrcompra.add(label_hora_v);
+            label_hora_v.setBounds(410,85,150,10);
+
+            panelrcompra.add(salon_cama_v);
+            salon_cama_v.setBounds(10,100,80,10);
+            panelrcompra.add(nsac_v);
+            nsac_v.setBounds(120,100,10,10);
+            panelrcompra.add(precio_u_sac_v);
+            precio_u_sac_v.setBounds(135,100,80,10);
+            panelrcompra.add(num_asientos_sac_v);
+            num_asientos_sac_v.setBounds(220,100,200,10);
+            panelrcompra.add(precio_total_sac_v);
+            precio_total_sac_v.setBounds(425,100,40,10);
+
+            JLabel semi_cama_v=new JLabel("Semi-Cama");
+            JLabel nsemic_v=new JLabel(Integer.toString(n_semic_v));
+            JLabel precio_u_sec_v=new JLabel("8000");
+            JLabel num_asientos_sec_v=new JLabel(numeros_semic_v);
+            JLabel precio_total_sec_v=new JLabel(Integer.toString(n_semic_v*8000));
+
+            panelrcompra.add(semi_cama_v);
+            semi_cama_v.setBounds(10,115,80,10);
+            panelrcompra.add(nsemic_v);
+            nsemic_v.setBounds(120,115,10,10);
+            panelrcompra.add(precio_u_sec_v);
+            precio_u_sec_v.setBounds(135,115,80,10);
+            panelrcompra.add(num_asientos_sec_v);
+            num_asientos_sec_v.setBounds(220,115,200,10);
+            panelrcompra.add(precio_total_sec_v);
+            precio_total_sec_v.setBounds(425,115,40,10);
+
         }
+        JLabel preciototal=new JLabel("Precio Total=" + ((n_salonc + n_salonc_v) * 10000 + (n_semic_v + n_semic) * 8000));
+        panelrcompra.add(preciototal);
+        preciototal.setBounds(400,130,150,20);
 
     }
     private class siguienteListener implements ActionListener {
