@@ -157,17 +157,29 @@ public class PanelBus extends JPanel {
                 tipobusvuelta="dospisos";
             }
         }
+        if(panelElegirAsiento==null) {
+            panelElegirAsiento = new PanelElegirAsiento(indexida, indexvuelta, this);
+            panelElegirViaje.add(panelElegirAsiento);
+            panelElegirAsiento.setBounds(760, 10, 1150, 990);
+            panelElegirAsiento.setBackground(new Color(156, 207, 155));
+            panelElegirAsiento.repaint();
+            panelElegirAsiento.revalidate();
+            this.revalidate();
+            this.repaint();
+            panelElegirViaje.repaint();
+            panelElegirViaje.revalidate();
+        }else{
+            panelElegirAsiento.setVisible(true);
 
-        panelElegirAsiento = new PanelElegirAsiento(indexida, indexvuelta,this);
-        panelElegirViaje.add(panelElegirAsiento);
-        panelElegirAsiento.setBounds(760,10,1150,990);
-        panelElegirAsiento.setBackground(new Color(156, 207, 155));
-        panelElegirAsiento.repaint();
-        panelElegirAsiento.revalidate();
-        this.revalidate();
-        this.repaint();
-        panelElegirViaje.repaint();
-        panelElegirViaje.revalidate();
+            panelElegirAsiento.refresh(indexida,indexvuelta,this);
+            panelElegirAsiento.repaint();
+            panelElegirAsiento.revalidate();
+            this.revalidate();
+            this.repaint();
+            panelElegirViaje.repaint();
+            panelElegirViaje.revalidate();
+            panelElegirAsiento.updateResumenCompra();
+        }
 
 
     }
@@ -220,6 +232,102 @@ public class PanelBus extends JPanel {
             return busArrayList.size()-1;
         }
         return -1;
+    }
+    public void refresh(PanelElegirViaje panelElegirViaje){
+        this.removeAll();
+        this.panelElegirViaje=panelElegirViaje;
+        origen=panelElegirViaje.origen;
+        destino=panelElegirViaje.destino;
+
+        JLabel labelida= new JLabel("Ida");
+        labelida.setBounds(90,30,100,20);
+        labelida.setFont(new Font("Arial",Font.BOLD,20));
+        this.add(labelida);
+        ButtonGroup grupo = new ButtonGroup();
+        this.setLayout(null);
+        this.panelElegirViaje = panelElegirViaje;
+        diaIda = panelElegirViaje.diaIda;
+        mesIda = panelElegirViaje.mesIda;
+        anhoIda = panelElegirViaje.anhoIda;
+        diaVuelta = panelElegirViaje.diaVuelta;
+        mesVuelta = panelElegirViaje.mesVuelta;
+        anhoVuelta = panelElegirViaje.anhoVuelta;
+        busUnPiso = new JToggleButton("Bus de 1 piso");
+        busUnPiso.setBounds(30,70,150,50);
+        busDosPisos = new JToggleButton("Bus de 2 pisos");
+        busDosPisos.setBounds(30,130,150,50);
+
+        grupo.add(busUnPiso);
+        grupo.add(busDosPisos);
+
+        this.add(busUnPiso);
+        this.add(busDosPisos);
+
+        ButtonGroup group = new ButtonGroup();
+
+        temprano = new JRadioButton("10:00 am");
+        temprano.setBounds(55, 190, 100, 50);
+        tarde = new JRadioButton("16:00 pm");
+        tarde.setBounds(55, 240, 100, 50);
+        noche = new JRadioButton("22:00 pm");
+        noche.setBounds(55,290,100,50);
+
+        group.add(temprano);
+        group.add(tarde);
+        group.add(noche);
+
+
+        this.add(temprano);
+        this.add(tarde);
+        this.add(noche);
+        temprano.addActionListener(new idaListener());
+        tarde.addActionListener(new idaListener());
+        noche.addActionListener(new idaListener());
+
+        JButton EscogerAsiento = new JButton("Escoger Asiento");
+        this.add(EscogerAsiento);
+        EscogerAsiento.setBounds(215,370,150,50);
+        EscogerAsiento.addActionListener(new PanelBus.EscogerAsientoteListener());
+        this.setBackground(new Color(172, 229, 232));
+        if(diaVuelta != null && mesVuelta != null && anhoVuelta != null){
+            JLabel labelvuelta= new JLabel("Vuelta");
+            labelvuelta.setBounds(260,30,100,20);
+            labelvuelta.setFont(new Font("Arial",Font.BOLD,20));
+            this.add(labelvuelta);
+
+            tempranoVuelta = new JRadioButton("10:00 am");
+            tempranoVuelta.setBounds(240, 190, 100, 50);
+            tardeVuelta = new JRadioButton("16:00 pm");
+            tardeVuelta.setBounds(240, 240, 100, 50);
+            nocheVuelta = new JRadioButton("22:00 pm");
+            nocheVuelta.setBounds(240,290,100,50);
+            ButtonGroup group2 = new ButtonGroup();
+            group2.add(tempranoVuelta);
+            group2.add(tardeVuelta);
+            group2.add(nocheVuelta);
+
+
+            this.add(tempranoVuelta);
+            this.add(tardeVuelta);
+            this.add(nocheVuelta);
+            tempranoVuelta.addActionListener(new vueltaListener());
+            tardeVuelta.addActionListener(new vueltaListener());
+            nocheVuelta.addActionListener(new vueltaListener());
+
+            busUnPiso2 = new JToggleButton("Bus de 1 piso");
+            busUnPiso2.setBounds(215,70,150,50);
+            busDosPisos2 = new JToggleButton("Bus de 2 pisos");
+            busDosPisos2.setBounds(215,130,150,50);
+
+            ButtonGroup grupopisos= new ButtonGroup();
+            grupopisos.add(busUnPiso2);
+            grupopisos.add(busDosPisos2);
+
+            this.add(busUnPiso2);
+            this.add(busDosPisos2);
+        }
+        this.revalidate();
+        this.repaint();
     }
     private class EscogerAsientoteListener implements ActionListener {
         @Override

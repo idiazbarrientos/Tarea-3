@@ -67,8 +67,11 @@ public class PanelPiso2 extends JPanel {
         }
     }
 
-    public void refresh(){
+    public void refresh(int indexida,PanelBus panelBus, PanelElegirAsiento panelElegirAsiento){
         this.removeAll();
+        this.indexida=indexida;
+        this.panelBus=panelBus;
+        this.panelElegirAsiento=panelElegirAsiento;
         botonAsientosArrayList = new ArrayList<BotonAsientos>();
         BusDosPisos busIda = (BusDosPisos) panelBus.busArrayList.get(indexida);
         int nAsientos = busIda.piso2.size();

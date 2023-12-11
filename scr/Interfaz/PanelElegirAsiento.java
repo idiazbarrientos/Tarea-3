@@ -168,7 +168,7 @@ public class PanelElegirAsiento extends JPanel {
                 }
             }
             panel1piso.repaint();
-            panel1piso.refresh();
+            panel1piso.refresh(indexida,panelBus,this);
         }
         if(busIda.getClass().getSimpleName().equals("BusDosPisos")){
             for(int i = 0; i<panelpiso1.botonAsientosArrayList.size(); i++){
@@ -178,7 +178,7 @@ public class PanelElegirAsiento extends JPanel {
                 }
             }
             panelpiso1.repaint();
-            panelpiso1.refresh();
+            panelpiso1.refresh(indexida,panelBus,this);
             for(int i = 0; i<panelpiso2.botonAsientosArrayList.size(); i++){
                 BotonAsientos boton = panelpiso2.botonAsientosArrayList.get(i);
                 if(boton.asiento.isSelect()){
@@ -186,8 +186,10 @@ public class PanelElegirAsiento extends JPanel {
                 }
             }
             panelpiso2.repaint();
-            panelpiso2.refresh();
+            panelpiso2.refresh(indexida,panelBus,this);
         }
+        this.setVisible(false);
+        this.removeAll();
         this.repaint();
 
 
@@ -206,7 +208,7 @@ public class PanelElegirAsiento extends JPanel {
                 }
             }
             panelBus1Piso.repaint();
-            panelBus1Piso.refresh();
+            panelBus1Piso.refresh(indexida,panelBus,this);
         }
         if(busVuelta.getClass().getSimpleName().equals(("BusDosPisos"))){
             for(int i = 0; i<panelPiso1.botonAsientosArrayList.size(); i++){
@@ -224,9 +226,9 @@ public class PanelElegirAsiento extends JPanel {
                 }
             }
             panelPiso1.repaint();
-            panelPiso1.refresh();
+            panelPiso1.refresh(indexida,panelBus,this);
             panelPiso2.repaint();
-            panelPiso2.refresh();
+            panelPiso2.refresh(indexida,panelBus,this);
         }
         System.out.println(asientos_seleccionados_ida);
         System.out.println(indexida);
@@ -237,6 +239,8 @@ public class PanelElegirAsiento extends JPanel {
             boton.asiento.comprar();
         }
 
+        this.setVisible(false);
+        this.removeAll();
         this.repaint();
     }
 
@@ -435,6 +439,100 @@ public class PanelElegirAsiento extends JPanel {
         preciototal.setBounds(400,130,150,20);
 
     }
+
+    public void refresh(int indexida,int indexvuelta,PanelBus panelBus){
+        this.setLayout(null);
+
+        this.removeAll();
+        this.revalidate();
+        this.repaint();
+
+
+        this.panelBus=panelBus;
+        this.indexvuelta = indexvuelta;
+        this.indexida=indexida;
+
+
+
+        busIda = panelBus.busArrayList.get(indexida);
+        if(indexvuelta!=-1) {
+            busVuelta = panelBus.busArrayList.get(indexvuelta);
+        }
+
+        System.out.println(busIda.getClass().getSimpleName());
+        if(busIda.getClass().getSimpleName().equals("BusUnPiso")) {
+
+            this.revalidate();
+            this.repaint();
+            if(panel1piso==null){
+                panel1piso=new PanelBus1Piso(indexida,panelBus,this);
+                this.add(panel1piso);
+                panel1piso.setBounds(10,10,240,480);
+                this.revalidate();
+                this.repaint();
+            }else{
+                this.remove(panel1piso);
+                this.add(panel1piso);
+                panel1piso.refresh(indexida,panelBus,this);
+                panel1piso.revalidate();
+                panel1piso.repaint();
+                this.revalidate();
+                this.repaint();
+            }
+
+
+
+        }
+        if(busIda.getClass().getSimpleName().equals("BusDosPisos")) {
+            if(panelpiso1==null) {
+                panelpiso1 = new PanelPiso1(indexida, panelBus,this);
+                this.add(panelpiso1);
+                panelpiso1.setBounds(10, 10, 240, 480);
+            }else{
+                this.remove(panelpiso1);
+                this.add(panelpiso1);
+                panelpiso1.refresh(indexida,panelBus,this);
+                panelpiso1.revalidate();
+                panelpiso1.repaint();
+                this.revalidate();
+                this.repaint();
+            }
+            if(panelpiso2==null) {
+                panelpiso2 = new PanelPiso2(indexida, panelBus,this);
+                this.add(panelpiso2);
+                panelpiso2.setBounds(10, 10, 240, 480);
+            }else{
+
+                panelpiso2.refresh(indexida,panelBus,this);
+                this.remove(panelpiso2);
+                this.add(panelpiso2);
+                panelpiso2.revalidate();
+                panelpiso2.repaint();
+                this.revalidate();
+                this.repaint();
+            }
+
+            System.out.println("Bus 2 Pisos");
+        }
+        if (indexvuelta != -1) {
+            botonSiguiente = new JButton("Siguiente");
+            this.add(botonSiguiente);
+            botonSiguiente.setBounds(300, 510, 100, 40);
+            botonSiguiente.addActionListener(new siguienteListener());
+        }
+        else{
+            botonComprar = new JButton("Comprar");
+            this.add(botonComprar);
+            botonComprar.setBounds(300,510,100,40);
+            botonComprar.addActionListener(new comprarListener());
+        }
+
+        panelrcompra=new PanelResumenCompra();
+        this.add(panelrcompra);
+        panelrcompra.setBackground(new Color(96, 169, 224));
+        panelrcompra.setBounds(10,570,600,200);
+
+    }
     private class siguienteListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -449,12 +547,14 @@ public class PanelElegirAsiento extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             comprarAsientosIda();
+            panelBus.setVisible(false);
         }
     }
     private class comprarListener2 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             comprarAsientosVuelta();
+            panelBus.setVisible(false);
         }
     }
 }

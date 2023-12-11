@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static Codigo.TipoAsiento.SEMI_CAMA;
 
@@ -72,15 +73,20 @@ public class PanelBus1Piso extends JPanel {
                 this.repaint();
             }
         }
-        public void refresh(){
+        public void refresh(int indexida, PanelBus panelBus, PanelElegirAsiento panelElegirAsiento){
+            this.panelBus=panelBus;
+            this.busIndiceIda=indexida;
+            this.panelElegirAsiento=panelElegirAsiento;
             this.removeAll();
             array_botones=new ArrayList<>();
             BusUnPiso ida = (BusUnPiso) panelBus.busArrayList.get(busIndiceIda);
+            System.out.println("Refrescando bus: "+ida.asientoArrayList);
             setLayout(new GridLayout(0, 4, 5, 5));
             for(int i = 1; i <= ida.asientoArrayList.size(); i++){
                 array_botones.add(new BotonAsientos(ida.asientoArrayList.get(i-1)));
             }
-            for(int i = 1; i <=ida.asientoArrayList.size(); i++) {
+            System.out.println("Refrescando bus: "+array_botones);
+            for(int i = 1; i <=array_botones.size(); i++) {
 
                 array_botones.get(i-1).setText(Integer.toString(i));
                 Color color_fondo;
@@ -98,7 +104,6 @@ public class PanelBus1Piso extends JPanel {
                 array_botones.get(i-1).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        panelElegirAsiento.updateResumenCompra();
                         BotonAsientos btn = (BotonAsientos) e.getSource();
                         if (btn.getBackground() == Color.GREEN) {
                             btn.asiento.deselect();
@@ -109,6 +114,7 @@ public class PanelBus1Piso extends JPanel {
                             System.out.println("Listener"+btn.asiento.isSelect());
                             btn.setBackground(Color.GREEN); // Si no está seleccionado, se selecciona (cambia a verde)
                         }
+                        panelElegirAsiento.updateResumenCompra();
                     }
                 });
 
@@ -116,6 +122,10 @@ public class PanelBus1Piso extends JPanel {
                 this.revalidate();;
                 this.repaint();
             }
+            this.revalidate();
+            this.repaint();
+            this.setVisible(false);
+            this.setVisible(true);
         }
 }
 
