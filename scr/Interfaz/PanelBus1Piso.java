@@ -19,8 +19,10 @@ import static Codigo.TipoAsiento.SEMI_CAMA;
 public class PanelBus1Piso extends JPanel {
     int busIndiceIda;
     PanelBus panelBus;
+    PanelElegirAsiento panelElegirAsiento;
     public ArrayList<BotonAsientos> array_botones = new ArrayList<>();
-        public PanelBus1Piso(int busIndiceIda, PanelBus panelBus){
+        public PanelBus1Piso(int busIndiceIda, PanelBus panelBus, PanelElegirAsiento panelElegirAsiento) {
+            this.panelElegirAsiento=panelElegirAsiento;
             this.busIndiceIda = busIndiceIda;
             this.panelBus = panelBus;
             BusUnPiso ida = (BusUnPiso) panelBus.busArrayList.get(busIndiceIda);
@@ -50,6 +52,7 @@ public class PanelBus1Piso extends JPanel {
                 array_botones.get(i-1).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        panelElegirAsiento.updateResumenCompra();
                         BotonAsientos btn = (BotonAsientos) e.getSource();
                         if (btn.getBackground() == Color.GREEN) {
                             btn.asiento.deselect();
@@ -94,6 +97,7 @@ public class PanelBus1Piso extends JPanel {
                 array_botones.get(i-1).addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        panelElegirAsiento.updateResumenCompra();
                         BotonAsientos btn = (BotonAsientos) e.getSource();
                         if (btn.getBackground() == Color.GREEN) {
                             btn.asiento.deselect();

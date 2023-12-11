@@ -13,9 +13,11 @@ import java.util.ArrayList;
  */
 public class PanelPiso1 extends JPanel {
     PanelBus panelBus;
+    PanelElegirAsiento panelElegirAsiento;
     int indexida;
     public ArrayList<BotonAsientos> botonAsientosArrayList = new ArrayList<BotonAsientos>();
-    public PanelPiso1(int indexida, PanelBus panelBus){
+    public PanelPiso1(int indexida, PanelBus panelBus,PanelElegirAsiento panelelegirasiento){
+        this.panelElegirAsiento=panelelegirasiento;
         this.indexida = indexida;
         this.panelBus = panelBus;
         this.setLayout(new GridLayout(0,4));
@@ -41,6 +43,7 @@ public class PanelPiso1 extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     BotonAsientos btn = (BotonAsientos) e.getSource();
+                    panelElegirAsiento.updateResumenCompra();
                     if (btn.getBackground() == Color.GREEN) {
                         btn.asiento.deselect();
                         btn.setBackground(color_fondo); // Si está seleccionado, se deselecciona
@@ -84,6 +87,7 @@ public class PanelPiso1 extends JPanel {
             botonAsientosArrayList.get(i - 1).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    panelElegirAsiento.updateResumenCompra();
                     BotonAsientos btn = (BotonAsientos) e.getSource();
                     if (btn.getBackground() == Color.GREEN) {
                         btn.asiento.deselect();

@@ -8,6 +8,7 @@ import Interfaz.ValorPago;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ public class PanelElegirAsiento extends JPanel {
 
     PanelBus1Piso panel1piso;
     PanelBus1Piso panelBus1Piso;
+
+    PanelResumenCompra panelrcompra;
     Bus busIda,busVuelta;
 
     ArrayList<BotonAsientos> asientos_seleccionados_ida= new ArrayList<>();
@@ -56,7 +59,7 @@ public class PanelElegirAsiento extends JPanel {
 
             this.revalidate();
             this.repaint();
-            panel1piso=new PanelBus1Piso(indexida,panelBus);
+            panel1piso=new PanelBus1Piso(indexida,panelBus,this);
             this.add(panel1piso);
             panel1piso.setBounds(10,10,240,480);
             this.revalidate();
@@ -65,10 +68,10 @@ public class PanelElegirAsiento extends JPanel {
         }
         if(busIda.getClass().getSimpleName().equals("BusDosPisos")) {
 
-            panelpiso1 = new PanelPiso1(indexida, panelBus);
+            panelpiso1 = new PanelPiso1(indexida, panelBus,this);
             this.add(panelpiso1);
             panelpiso1.setBounds(10, 10, 240, 480);
-            panelpiso2 = new PanelPiso2(indexida, panelBus);
+            panelpiso2 = new PanelPiso2(indexida, panelBus,this);
             this.add(panelpiso2);
             panelpiso2.setBounds(260, 10, 240, 480);
             this.revalidate();
@@ -88,21 +91,24 @@ public class PanelElegirAsiento extends JPanel {
             botonComprar.addActionListener(new comprarListener());
         }
 
-
+        panelrcompra=new PanelResumenCompra();
+        this.add(panelrcompra);
+        panelrcompra.setBackground(new Color(96, 169, 224));
+        panelrcompra.setBounds(10,570,600,200);
     }
     public void dibujarBusVuelta(){
         if(indexvuelta != -1){
             Bus busVuelta = panelBus.busArrayList.get(indexvuelta);
             if(busVuelta.getClass().getSimpleName().equals("BusUnPiso")){
-                panelBus1Piso = new PanelBus1Piso(indexvuelta, panelBus);
+                panelBus1Piso = new PanelBus1Piso(indexvuelta, panelBus,this);
                 this.add(panelBus1Piso);
                 panelBus1Piso.setBounds(10,10,240,480);
             }
             if(busVuelta.getClass().getSimpleName().equals("BusDosPisos")){
-                panelPiso1 = new PanelPiso1(indexvuelta, panelBus);
+                panelPiso1 = new PanelPiso1(indexvuelta, panelBus,this);
                 this.add(panelPiso1);
                 panelPiso1.setBounds(10,10,240,480);
-                panelPiso2 = new PanelPiso2(indexvuelta, panelBus);
+                panelPiso2 = new PanelPiso2(indexvuelta, panelBus,this);
                 this.add(panelPiso2);
                 panelPiso2.setBounds(260,10,240,480);
             }
@@ -118,6 +124,7 @@ public class PanelElegirAsiento extends JPanel {
     }
     public void borrarAsientos(){
         this.removeAll();
+        this.add(panelrcompra);
         this.revalidate();
         this.repaint();
     }
@@ -228,6 +235,11 @@ public class PanelElegirAsiento extends JPanel {
         }
 
         this.repaint();
+    }
+
+
+    public void updateResumenCompra(){
+
     }
     private class siguienteListener implements ActionListener {
         @Override
