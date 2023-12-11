@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Aqui se planifica el tipo de bus que se desea para solo la ida o ida y vuelta y el horario de salida del mismo
+ */
 public class PanelBus extends JPanel {
     private JMenu SeleccionHorarios;
     private JMenuBar BarraHorarios;
@@ -42,8 +45,7 @@ public class PanelBus extends JPanel {
     String tipobusvuelta;
 
     /**
-     * Aqui se planifica el tipo de bus que se desea para solo la ida o ida y vuelta y el horario de salida del mismo
-     *
+     *Se generan en pantalla los tipos de selecciones para el bus, como el tipo, y su horario de salida
      */
     public PanelBus(PanelElegirViaje panelElegirViaje){
 
@@ -182,6 +184,11 @@ public class PanelBus extends JPanel {
 
 
     }
+
+    /**
+     * aqui si se selecciona el tipo de bus para la ida, se crea su bus con sus datos y los asientos correspondientes
+     * @return
+     */
     public int buscarBusIda(){
         for(int i = 0; i<busArrayList.size(); i++){
             Bus bus=busArrayList.get(i);
@@ -206,6 +213,11 @@ public class PanelBus extends JPanel {
         }
         return -1;
     }
+
+    /**
+     * aqui si selecciona el tipo de bus para la vuelta, se crea su bus con sus datos y los asientos correspondientes
+     * @return
+     */
     public int buscarBusVuelta(){
         for(int i = 0; i<busArrayList.size(); i++){
 

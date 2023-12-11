@@ -1,11 +1,15 @@
 package Interfaz;
 
+import Codigo.excepcioncustom;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ * Aqui se planifica el origen y destino de un viaje, si es de solo ida o con vuelta, y la fecha de salida
+ */
 public class PanelElegirViaje extends JPanel {
     private JMenu SeleccionOrigen;
     private JMenu SeleccionDestino;
@@ -40,9 +44,9 @@ public class PanelElegirViaje extends JPanel {
     String destino;
 
     /**
-     * Aqui se planifica la parte de Destino y Origen, si es solo ida o con vuelta, la fecha, de un viaje
+     * Se generan en pantalla los tipos de selecciones para el viaje, origen y destino, fecha de salida, ida con o sin vuelta
      */
-    public PanelElegirViaje() {
+    public PanelElegirViaje() throws excepcioncustom {
         this.setLayout(null);
         JMenuItem opcion1 = new JMenuItem("Concepcion");
         JMenuItem opcion2 = new JMenuItem("Santiago");
@@ -77,6 +81,13 @@ public class PanelElegirViaje extends JPanel {
         opcion4.addActionListener(new destinoListener());
         opcion5.addActionListener(new destinoListener());
         opcion6.addActionListener(new destinoListener());
+
+        if(SeleccionOrigen == null || SeleccionDestino == null){
+
+                throw new excepcioncustom("No se ha seleccionado Origen ni Destino");
+
+        }
+
 
         BarraDia = new JMenuBar();
         BarraDia.setBounds(10, 250, 50, 20);
@@ -167,6 +178,7 @@ public class PanelElegirViaje extends JPanel {
 
     /**
      * Parte en donde cambia la interfaz si se desea un viaje con ida y vuelta
+     * creando nuevas barras de eleccion para el viaje de vuelta
      */
     public void crearBarraVuelta(){
         BarraDiaVuelta = new JMenuBar();
@@ -245,7 +257,12 @@ public class PanelElegirViaje extends JPanel {
         this.repaint();
     }
 
-    public void seleccionarBus(){
+    /**
+     * Aqui se crea el panel bus que contiene los horarios y el tipo de bus si al momento de apretar siguiente
+     * las opciones de ida y vueltan han sido seleccionadas con anterioridad
+     * @throws excepcioncustom
+     */
+    public void seleccionarBus() throws excepcioncustom {
         if(ida.isSelected() || vuelta.isSelected()) {
             if(panelbus!=null){
                 panelbus.setVisible(true);
@@ -256,13 +273,20 @@ public class PanelElegirViaje extends JPanel {
             panelbus.setBounds(300,10,450,460);
             System.out.println("ola");
         }
+        else{
+            throw new excepcioncustom("No se ha seleccionado ida ni vuelta");
+        }
     }
 
 
     private class siguienteListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            seleccionarBus();
+            try {
+                seleccionarBus();
+            } catch (excepcioncustom ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 

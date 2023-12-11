@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 /**
- * Aqui se enceuntran los botones que representan los asientos del piso2 del bus de 2 pisos
+ * Aqui se encuentran los botones que representan los asientos del piso2 del bus de 2 pisos
  */
 public class PanelPiso2 extends JPanel {
     PanelBus panelBus;
@@ -67,6 +67,12 @@ public class PanelPiso2 extends JPanel {
         }
     }
 
+    /**
+     * se refresca el panel de botones del piso2, manteniendo los asientos seleccionados
+     * @param indexida
+     * @param panelBus
+     * @param panelElegirAsiento
+     */
     public void refresh(int indexida,PanelBus panelBus, PanelElegirAsiento panelElegirAsiento){
         this.removeAll();
         this.indexida=indexida;

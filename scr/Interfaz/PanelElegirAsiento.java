@@ -10,6 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Panel en donde dependiendo de la seleccion de los buses para la ida y vuelta, se crean los botones que representa los asientos
+ *
+ */
 public class PanelElegirAsiento extends JPanel {
 
     PanelBus panelBus;
@@ -32,9 +36,7 @@ public class PanelElegirAsiento extends JPanel {
     ArrayList<BotonAsientos> asientos_seleccionados_ida= new ArrayList<>();
     ArrayList<BotonAsientos> asientos_resumen_compra_ida= new ArrayList<>();
     ArrayList<BotonAsientos> asientos_resumen_compra_vuelta= new ArrayList<>();
-    /**
-     *Aqui dependiendo de la seleccion del tipo de bus y si es ida o vuelta, se genera su respectivo panel de botones
-     */
+
     public PanelElegirAsiento(int indexida, int indexvuelta, PanelBus panelBus) {
         this.setLayout(null);
 
@@ -128,6 +130,10 @@ public class PanelElegirAsiento extends JPanel {
         this.revalidate();
         this.repaint();
     }
+
+    /**
+     * se registran los asientos seleccioandos que ya han sido comprados en los buses
+     */
     public void guardarAsientosSeleccionados(){
         asientos_seleccionados_ida.clear();
         if(busIda.getClass().getSimpleName().equals("BusUnPiso")) {
@@ -153,6 +159,10 @@ public class PanelElegirAsiento extends JPanel {
             }
         }
     }
+
+    /**
+     * Dependiendo del bus que se selecciona, se genera la compra de los paneles de asientos respectivos a cada tipo de bus de ida
+     */
     public void comprarAsientosIda(){
         if(busIda.getClass().getSimpleName().equals("BusUnPiso")) {
             for(int i = 0; i<panel1piso.array_botones.size(); i++){
@@ -191,7 +201,9 @@ public class PanelElegirAsiento extends JPanel {
 
 
     }
-
+    /**
+     * Dependiendo del bus que se selecciona, se genera la compra de los paneles de asientos respectivos a cada tipo de bus de vuelta
+     */
     public void comprarAsientosVuelta(){
         System.out.println("Comprar vuelta");
         if(busVuelta.getClass().getSimpleName().equals("BusUnPiso")) {
@@ -241,7 +253,10 @@ public class PanelElegirAsiento extends JPanel {
         this.repaint();
     }
 
-
+    /**
+     * aqui es donde dependiendo de los precios y la seleccion del asiento, se actualiza el panel que entrega el precio a pagar
+     * funciona para que reconozca a que bus se esta seleccionando junto con sus datos como horario de salida, si es de ida o vuelta y su numero de asiento
+     */
     public void updateResumenCompra(){
         asientos_resumen_compra_ida.clear();
         asientos_resumen_compra_vuelta.clear();
@@ -437,6 +452,12 @@ public class PanelElegirAsiento extends JPanel {
 
     }
 
+    /**
+     * refresca los paneles de el resumen de la compra, el de seleccion de asiento y de bus para otra compra
+     * @param indexida
+     * @param indexvuelta
+     * @param panelBus
+     */
     public void refresh(int indexida,int indexvuelta,PanelBus panelBus){
         this.setLayout(null);
 

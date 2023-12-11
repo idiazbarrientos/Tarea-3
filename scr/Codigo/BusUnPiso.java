@@ -3,7 +3,7 @@ package Codigo;
 import java.util.ArrayList;
 
 /**
- * Representa los buses de un piso de un viaje
+ * Representa los buses de un piso y sus asientos de un viaje
  */
 public class BusUnPiso extends Bus{
     public ArrayList<Asiento> asientoArrayList = new ArrayList<Asiento>();

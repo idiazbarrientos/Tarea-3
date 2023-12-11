@@ -1,7 +1,5 @@
 package Interfaz;
 
-import Codigo.Asiento;
-import Codigo.Bus;
 import Codigo.BusUnPiso;
 import Codigo.TipoAsiento;
 
@@ -10,12 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import static Codigo.TipoAsiento.SEMI_CAMA;
 
 /**
- * Aqui se enceuntran los botones que representan los asientos del bus de 1 piso
+ * Aqui se encuentran los botones que representan los asientos del bus de 1 piso
  */
 public class PanelBus1Piso extends JPanel {
     int busIndiceIda;
@@ -73,6 +68,13 @@ public class PanelBus1Piso extends JPanel {
                 this.repaint();
             }
         }
+
+    /**
+     * se refresca el panel de botones de 1 piso, manteniendo los asientos seleccionados
+     * @param indexida
+     * @param panelBus
+     * @param panelElegirAsiento
+     */
         public void refresh(int indexida, PanelBus panelBus, PanelElegirAsiento panelElegirAsiento){
             this.panelBus=panelBus;
             this.busIndiceIda=indexida;

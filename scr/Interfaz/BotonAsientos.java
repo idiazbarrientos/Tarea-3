@@ -4,6 +4,9 @@ import Codigo.Asiento;
 
 import javax.swing.*;
 
+/**
+ * Botones que representan los asientos de un bus
+ */
 public class BotonAsientos extends JButton {
     public Asiento asiento;
 
