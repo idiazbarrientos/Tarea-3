@@ -1,12 +1,8 @@
 package Interfaz;
 
 import Codigo.Asiento;
-import Interfaz.ValorPago;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class BotonAsientos extends JButton {
     public Asiento asiento;

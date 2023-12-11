@@ -1,10 +1,7 @@
 package Interfaz;
 
-import Codigo.Asiento;
 import Codigo.Bus;
 import Codigo.TipoAsiento;
-import Codigo.BusUnPiso;
-import Interfaz.ValorPago;
 
 
 import javax.swing.*;

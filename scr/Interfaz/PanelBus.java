@@ -20,7 +20,6 @@ public class PanelBus extends JPanel {
     private JToggleButton busUnPiso2;
     private JToggleButton busDosPisos2;
     private PanelElegirAsiento panelElegirAsiento;
-    private PanelBus2Piso panelBus2Piso;
     private JRadioButton temprano;
     private JRadioButton tarde;
     private JRadioButton noche;
