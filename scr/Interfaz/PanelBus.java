@@ -143,13 +143,19 @@ public class PanelBus extends JPanel {
     /**
      * Aqui dependiendo de la seleccion del bus, se genera su respectivo piso de asientos
      */
-    public void selecionarTipoDeBus () throws NoFechaException, BusNoSeleccionadoException {
+    public void selecionarTipoDeBus () throws NoFechaException, BusNoSeleccionadoException, HorarioNoSeleccionadoException {
         int indexida, indexvuelta = -1;
         if(!busUnPiso.isSelected() && !busDosPisos.isSelected()){
-            throw new BusNoSeleccionadoException("Debe seleccionar un tipo de bus");
+            throw new BusNoSeleccionadoException("Debe seleccionar un tipo de bus de ida");
         }
         else if(((diaVuelta != null) && (!busUnPiso2.isSelected() && !busDosPisos2.isSelected()))){
                     throw new BusNoSeleccionadoException("Debe seleccionar un tipo de bus de vuelta");
+        }
+        else if(horarioIda == null){
+            throw new HorarioNoSeleccionadoException("Debe seleccionar un horario de ida");
+        }
+        else if(diaVuelta != null && horarioVuelta == null){
+            throw new HorarioNoSeleccionadoException("Debe seleccionar un horario de vuelta");
         }
         indexida=buscarBusIda();
         if(diaVuelta != null && mesVuelta != null && anhoVuelta != null){
@@ -352,6 +358,8 @@ public class PanelBus extends JPanel {
             } catch (NoFechaException ex) {
                 throw new RuntimeException(ex);
             } catch (BusNoSeleccionadoException ex) {
+                throw new RuntimeException(ex);
+            } catch (HorarioNoSeleccionadoException ex) {
                 throw new RuntimeException(ex);
             }
         }
