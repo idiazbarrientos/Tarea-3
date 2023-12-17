@@ -1,32 +1,67 @@
 package Interfaz;
 
-import Codigo.excepcioncustom;
+import Codigo.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 import javax.swing.*;
 
 class PanelElegirViajeTest {
-    JRadioButton ida;
-    JRadioButton vuelta;
-
-    @org.junit.jupiter.api.BeforeEach
-    void setUp() {
-        ida = new JRadioButton("Solo Ida");
-        vuelta = new JRadioButton("Ida y Vuelta");
+    private PanelElegirViaje panelElegirViaje;
+    @BeforeEach
+    void setup(){
+        panelElegirViaje= new PanelElegirViaje();
+    }
+    @Test
+    @DisplayName("Test día de vuelta no elegido")
+    public void TestNoDiaVuelta() throws NoFechaException, OrigenIgualDestinoException, NoOrigenException, IdaAntesQueVueltaException, NoIdaNoVueltaException, NoDestinoException {
+        panelElegirViaje.setupNoDiaVueltaTest();
+        assertThrows(NoFechaException.class,()->{
+            panelElegirViaje.seleccionarBus();
+        });
     }
 
-    @org.junit.jupiter.api.AfterEach
-    void tearDown() {
+    @Test
+    @DisplayName("Test mes de vuelta no elegido")
+    public void TestNoMesVuelta() throws NoFechaException, OrigenIgualDestinoException, NoOrigenException, IdaAntesQueVueltaException, NoIdaNoVueltaException, NoDestinoException {
+        panelElegirViaje.setupNoMesVueltaTest();
+        assertThrows(NoFechaException.class,()->{
+            panelElegirViaje.seleccionarBus();
+        });
     }
 
-
-    /**
-     * se prueba que se necesita seleccionar ida o vuelta en la planificacion del viaje
-     * @throws excepcioncustom
-     */
-    @org.junit.jupiter.api.Test
-    void seleccionarBus() throws excepcioncustom {
-        if(ida == null || vuelta == null){
-            throw new excepcioncustom("Debe seleccionar ida y vuelta");
-        }
+    @Test
+    @DisplayName("Test año de vuelta no elegido")
+    public void TestNoAnhoVuelta() throws NoFechaException, OrigenIgualDestinoException, NoOrigenException, IdaAntesQueVueltaException, NoIdaNoVueltaException, NoDestinoException {
+        panelElegirViaje.setupNoAnhoVueltaTest();
+        assertThrows(NoFechaException.class,()->{
+            panelElegirViaje.seleccionarBus();
+        });
+    }
+    @Test
+    @DisplayName("Test día de ida no elegido")
+    public void TestNoDiaIda() throws NoFechaException, OrigenIgualDestinoException, NoOrigenException, IdaAntesQueVueltaException, NoIdaNoVueltaException, NoDestinoException {
+        panelElegirViaje.setupNoDiaIdaTest();
+        assertThrows(NoFechaException.class,()->{
+            panelElegirViaje.seleccionarBus();
+        });
+    }
+    @Test
+    @DisplayName("Test mes de ida no elegido")
+    public void TestNoMesIda() throws NoFechaException, OrigenIgualDestinoException, NoOrigenException, IdaAntesQueVueltaException, NoIdaNoVueltaException, NoDestinoException {
+        panelElegirViaje.setupNoMesIdaTest();
+        assertThrows(NoFechaException.class,()->{
+            panelElegirViaje.seleccionarBus();
+        });
+    }
+    @Test
+    @DisplayName("Test año de ida no elegido")
+    public void TestNoAnhoIda() throws NoFechaException, OrigenIgualDestinoException, NoOrigenException, IdaAntesQueVueltaException, NoIdaNoVueltaException, NoDestinoException {
+        panelElegirViaje.setupNoAnhoIdaTest();
+        assertThrows(NoFechaException.class,()->{
+            panelElegirViaje.seleccionarBus();
+        });
     }
 }

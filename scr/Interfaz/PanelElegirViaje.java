@@ -262,7 +262,7 @@ public class PanelElegirViaje extends JPanel {
      * @throws NoDestinoException
      * @throws OrigenIgualDestinoException
      */
-    public void seleccionarBus() throws NoIdaNoVueltaException, NoFechaException, IdaAntesQueVueltaException, NoIdaNoVueltaException, NoOrigenException, NoDestinoException, OrigenIgualDestinoException {
+    public void seleccionarBus() throws NoFechaException, IdaAntesQueVueltaException, NoIdaNoVueltaException, NoOrigenException, NoDestinoException, OrigenIgualDestinoException {
 
         if(diaIda == null || mesIda == null || anhoIda == null){
             throw new NoFechaException("Elegir fechas validas");
@@ -355,4 +355,58 @@ public class PanelElegirViaje extends JPanel {
         }
     }
 
+    public void setupNoDiaIdaTest(){
+        ida.setSelected(true);
+        mesIda="1";
+        anhoIda="2024";
+        origen="Santiago";
+        destino="Concepción";
+    }
+
+    public void setupNoMesIdaTest(){
+        ida.setSelected(true);
+        diaIda="9";
+        anhoIda="2024";
+        origen="Santiago";
+        destino="Concepción";
+    }
+    public void setupNoAnhoIdaTest(){
+        ida.setSelected(true);
+        diaIda="9";
+        mesIda="1";
+        origen="Santiago";
+        destino="Concepción";
+    }
+
+    public void setupNoDiaVueltaTest(){
+        vuelta.setSelected(true);
+        diaIda="9";
+        mesIda="1";
+        anhoIda="2024";
+        origen="Santiago";
+        destino="Concepción";
+        anhoVuelta="2024";
+        mesVuelta="12";
+    }
+
+    public void setupNoMesVueltaTest(){
+        vuelta.setSelected(true);
+        diaIda="9";
+        mesIda="1";
+        anhoIda="2024";
+        origen="Santiago";
+        destino="Concepción";
+        anhoVuelta="2024";
+        diaVuelta="3";
+    }
+    public void setupNoAnhoVueltaTest(){
+        vuelta.setSelected(true);
+        diaIda="9";
+        mesIda="1";
+        anhoIda="2024";
+        origen="Santiago";
+        destino="Concepción";
+        mesVuelta="11";
+        diaVuelta="3";
+    }
 }
