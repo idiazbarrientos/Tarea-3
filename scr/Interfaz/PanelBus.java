@@ -1,8 +1,6 @@
 package Interfaz;
 
-import Codigo.Bus;
-import Codigo.BusDosPisos;
-import Codigo.BusUnPiso;
+import Codigo.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -145,7 +143,7 @@ public class PanelBus extends JPanel {
     /**
      * Aqui dependiendo de la seleccion del bus, se genera su respectivo piso de asientos
      */
-    public void selecionarTipoDeBus(){
+    public void selecionarTipoDeBus () throws NoFechaException {
         int indexida, indexvuelta = -1;
         indexida=buscarBusIda();
         if(diaVuelta != null && mesVuelta != null && anhoVuelta != null){
@@ -343,7 +341,11 @@ public class PanelBus extends JPanel {
     private class EscogerAsientoteListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            selecionarTipoDeBus();
+            try {
+                selecionarTipoDeBus();
+            } catch (NoFechaException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
     private class idaListener implements ActionListener{

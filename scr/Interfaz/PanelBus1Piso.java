@@ -56,7 +56,6 @@ public class PanelBus1Piso extends JPanel {
                         } else if(!btn.asiento.isComprado()){
                             btn.selectAsiento();
 
-                            System.out.println("Listener"+btn.asiento.isSelect());
                             btn.setBackground(Color.GREEN); // Si no está seleccionado, se selecciona (cambia a verde)
                         }
                         panelElegirAsiento.updateResumenCompra();
@@ -82,12 +81,10 @@ public class PanelBus1Piso extends JPanel {
             this.removeAll();
             array_botones=new ArrayList<>();
             BusUnPiso ida = (BusUnPiso) panelBus.busArrayList.get(busIndiceIda);
-            System.out.println("Refrescando bus: "+ida.asientoArrayList);
             setLayout(new GridLayout(0, 4, 5, 5));
             for(int i = 1; i <= ida.asientoArrayList.size(); i++){
                 array_botones.add(new BotonAsientos(ida.asientoArrayList.get(i-1)));
             }
-            System.out.println("Refrescando bus: "+array_botones);
             for(int i = 1; i <=array_botones.size(); i++) {
 
                 array_botones.get(i-1).setText(Integer.toString(i));
@@ -113,7 +110,6 @@ public class PanelBus1Piso extends JPanel {
                         } else if(!btn.asiento.isComprado()){
                             btn.asiento.select();
                             //btn.SelectAsiento();
-                            System.out.println("Listener"+btn.asiento.isSelect());
                             btn.setBackground(Color.GREEN); // Si no está seleccionado, se selecciona (cambia a verde)
                         }
                         panelElegirAsiento.updateResumenCompra();

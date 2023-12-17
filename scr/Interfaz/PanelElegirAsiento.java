@@ -56,7 +56,6 @@ public class PanelElegirAsiento extends JPanel {
             busVuelta = panelBus.busArrayList.get(indexvuelta);
         }
 
-        System.out.println(busIda.getClass().getSimpleName());
         if(busIda.getClass().getSimpleName().equals("BusUnPiso")) {
 
             this.revalidate();
@@ -78,7 +77,6 @@ public class PanelElegirAsiento extends JPanel {
             panelpiso2.setBounds(260, 10, 240, 480);
             this.revalidate();
             this.repaint();
-            System.out.println("Bus 2 Pisos");
         }
         if (indexvuelta != -1) {
             botonSiguiente = new JButton("Siguiente");
@@ -167,11 +165,9 @@ public class PanelElegirAsiento extends JPanel {
         if(busIda.getClass().getSimpleName().equals("BusUnPiso")) {
             for(int i = 0; i<panel1piso.array_botones.size(); i++){
 
-                System.out.println(i+" "+ panel1piso.array_botones.get(i).asiento.isSelect());
                 BotonAsientos boton = panel1piso.array_botones.get(i);
                 if(boton.asiento.isSelect()){
                     boton.asiento.comprar();
-                    System.out.println(panel1piso.array_botones.get(i).asiento.isComprado());
                 }
             }
             panel1piso.repaint();
@@ -205,15 +201,12 @@ public class PanelElegirAsiento extends JPanel {
      * Dependiendo del bus que se selecciona, se genera la compra de los paneles de asientos respectivos a cada tipo de bus de vuelta
      */
     public void comprarAsientosVuelta(){
-        System.out.println("Comprar vuelta");
         if(busVuelta.getClass().getSimpleName().equals("BusUnPiso")) {
             for(int i = 0; i<panelBus1Piso.array_botones.size(); i++){
 
-                System.out.println(i+" "+ panelBus1Piso.array_botones.get(i).asiento.isSelect());
                 BotonAsientos boton = panelBus1Piso.array_botones.get(i);
                 if(boton.asiento.isSelect()){
                     boton.asiento.comprar();
-                    System.out.println(panelBus1Piso.array_botones.get(i).asiento.isComprado());
                 }
             }
             panelBus1Piso.repaint();
@@ -221,14 +214,12 @@ public class PanelElegirAsiento extends JPanel {
         }
         if(busVuelta.getClass().getSimpleName().equals(("BusDosPisos"))){
             for(int i = 0; i<panelPiso1.botonAsientosArrayList.size(); i++){
-                System.out.println(i+" "+ panelPiso1.botonAsientosArrayList.get(i).asiento.isSelect());
                 BotonAsientos boton = panelPiso1.botonAsientosArrayList.get(i);
                 if(boton.asiento.isSelect()){
                     boton.asiento.comprar();
                 }
             }
             for(int i = 0; i<panelPiso2.botonAsientosArrayList.size(); i++){
-                System.out.println(i+" "+ panelPiso2.botonAsientosArrayList.get(i).asiento.isSelect());
                 BotonAsientos boton = panelPiso2.botonAsientosArrayList.get(i);
                 if(boton.asiento.isSelect()){
                     boton.asiento.comprar();
@@ -239,9 +230,6 @@ public class PanelElegirAsiento extends JPanel {
             panelPiso2.repaint();
             panelPiso2.refresh(indexida,panelBus,this);
         }
-        System.out.println(asientos_seleccionados_ida);
-        System.out.println(indexida);
-        System.out.println(indexvuelta);
 
         for(int i=0; i<asientos_seleccionados_ida.size(); i++){
             BotonAsientos boton = asientos_seleccionados_ida.get(i);
@@ -263,7 +251,6 @@ public class PanelElegirAsiento extends JPanel {
         if(busIda.getClass().getSimpleName().equals("BusUnPiso"))
         {
 
-            System.out.println("Bus 1 pisoo wiiii");
             for(int i = 0; i<panel1piso.array_botones.size(); i++){
                 BotonAsientos boton = panel1piso.array_botones.get(i);
                 if(boton.asiento.isSelect()){
@@ -271,7 +258,6 @@ public class PanelElegirAsiento extends JPanel {
                 }
             }
         }else if(busIda.getClass().getSimpleName().equals("BusDosPisos")){
-            System.out.println("Bus dos pisos wiiii");
             for (int i = 0; i < panelpiso1.botonAsientosArrayList.size(); i++) {
                 BotonAsientos boton = panelpiso1.botonAsientosArrayList.get(i);
                 if (boton.asiento.isSelect()) {
@@ -285,7 +271,6 @@ public class PanelElegirAsiento extends JPanel {
                 }
             }
         }
-        System.out.println("Asientos seleccionados: " +asientos_resumen_compra_ida.size());
             panelrcompra.removeAll();
             JLabel label_ida=new JLabel("Ida:");
             JLabel label_origen_i=new JLabel("Origen: "+busIda.getOrigen());
@@ -477,7 +462,6 @@ public class PanelElegirAsiento extends JPanel {
             busVuelta = panelBus.busArrayList.get(indexvuelta);
         }
 
-        System.out.println(busIda.getClass().getSimpleName());
         if(busIda.getClass().getSimpleName().equals("BusUnPiso")) {
 
             this.revalidate();
@@ -530,7 +514,6 @@ public class PanelElegirAsiento extends JPanel {
                 this.repaint();
             }
 
-            System.out.println("Bus 2 Pisos");
         }
         if (indexvuelta != -1) {
             botonSiguiente = new JButton("Siguiente");

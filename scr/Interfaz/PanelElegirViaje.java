@@ -1,5 +1,6 @@
 package Interfaz;
 
+import Codigo.NoFechaException;
 import Codigo.excepcioncustom;
 
 import javax.swing.*;
@@ -261,8 +262,9 @@ public class PanelElegirViaje extends JPanel {
      * Aqui se crea el panel bus que contiene los horarios y el tipo de bus si al momento de apretar siguiente
      * las opciones de ida y vueltan han sido seleccionadas con anterioridad
      * @throws excepcioncustom
+     * @throws NoFechaException
      */
-    public void seleccionarBus() throws excepcioncustom {
+    public void seleccionarBus() throws excepcioncustom, NoFechaException {
         if(ida.isSelected() || vuelta.isSelected()) {
             if(panelbus!=null){
                 panelbus.setVisible(true);
@@ -271,10 +273,21 @@ public class PanelElegirViaje extends JPanel {
             }
             this.add(panelbus);
             panelbus.setBounds(300,10,450,460);
-            System.out.println("ola");
         }
         else{
             throw new excepcioncustom("No se ha seleccionado ida ni vuelta");
+        }
+        if(diaIda == null || mesIda == null || anhoIda == null){
+            throw new NoFechaException("Elegir fechas validas");
+        }
+        else if(anhoVuelta != null && Integer.parseInt(anhoIda) > Integer.parseInt(anhoVuelta)){
+            throw new NoFechaException("Elegir fechas validas");
+        }
+        else if(anhoVuelta != null && mesVuelta != null && Integer.parseInt(mesIda) > Integer.parseInt(mesVuelta) && Integer.parseInt(anhoIda) >= Integer.parseInt(anhoVuelta)){
+            throw new NoFechaException("Elegir fechas validas");
+        }
+        else if(anhoVuelta != null && mesVuelta != null && diaVuelta != null && (Integer.parseInt(diaIda) > Integer.parseInt(diaVuelta) && Integer.parseInt(mesIda) >= Integer.parseInt(mesVuelta) && Integer.parseInt(anhoIda) >= Integer.parseInt(anhoVuelta))){
+            throw new NoFechaException("Elegir fechas validas");
         }
     }
 
@@ -284,7 +297,7 @@ public class PanelElegirViaje extends JPanel {
         public void actionPerformed(ActionEvent e) {
             try {
                 seleccionarBus();
-            } catch (excepcioncustom ex) {
+            } catch (excepcioncustom | NoFechaException ex) {
                 throw new RuntimeException(ex);
             }
         }
