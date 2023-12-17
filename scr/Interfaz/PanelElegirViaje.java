@@ -2,8 +2,7 @@ package Interfaz;
 
 import Codigo.IdaAntesQueVueltaException;
 import Codigo.NoFechaException;
-import Codigo.excepcioncustom;
-
+import Codigo.NoIdaNoVueltaException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -48,7 +47,7 @@ public class PanelElegirViaje extends JPanel {
     /**
      * Se generan en pantalla los tipos de selecciones para el viaje, origen y destino, fecha de salida, ida con o sin vuelta
      */
-    public PanelElegirViaje() throws excepcioncustom {
+    public PanelElegirViaje() throws NoIdaNoVueltaException {
         this.setLayout(null);
         JMenuItem opcion1 = new JMenuItem("Concepcion");
         JMenuItem opcion2 = new JMenuItem("Santiago");
@@ -86,7 +85,7 @@ public class PanelElegirViaje extends JPanel {
 
         if(SeleccionOrigen == null || SeleccionDestino == null){
 
-                throw new excepcioncustom("No se ha seleccionado Origen ni Destino");
+                throw new NoIdaNoVueltaException("No se ha seleccionado Origen ni Destino");
 
         }
 
@@ -262,10 +261,10 @@ public class PanelElegirViaje extends JPanel {
     /**
      * Aqui se crea el panel bus que contiene los horarios y el tipo de bus si al momento de apretar siguiente
      * las opciones de ida y vueltan han sido seleccionadas con anterioridad
-     * @throws excepcioncustom
+     * @throws NoIdaNoVueltaException
      * @throws NoFechaException
      */
-    public void seleccionarBus() throws excepcioncustom, NoFechaException, IdaAntesQueVueltaException {
+    public void seleccionarBus() throws NoIdaNoVueltaException, NoFechaException, IdaAntesQueVueltaException, NoIdaNoVueltaException {
 
         if(diaIda == null || mesIda == null || anhoIda == null){
             throw new NoFechaException("Elegir fechas validas");
@@ -293,7 +292,7 @@ public class PanelElegirViaje extends JPanel {
             panelbus.setBounds(300,10,450,460);
         }
         else{
-            throw new excepcioncustom("No se ha seleccionado ida ni vuelta");
+            throw new NoIdaNoVueltaException("No se ha seleccionado ida ni vuelta");
         }
     }
 
@@ -303,7 +302,7 @@ public class PanelElegirViaje extends JPanel {
         public void actionPerformed(ActionEvent e) {
             try {
                 seleccionarBus();
-            } catch (excepcioncustom | NoFechaException | IdaAntesQueVueltaException ex) {
+            } catch (NoIdaNoVueltaException | NoFechaException | IdaAntesQueVueltaException ex) {
                 throw new RuntimeException(ex);
             }
         }
