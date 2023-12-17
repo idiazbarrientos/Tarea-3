@@ -74,6 +74,7 @@ public class PanelPiso2 extends JPanel {
      * @param panelElegirAsiento
      */
     public void refresh(int indexida,PanelBus panelBus, PanelElegirAsiento panelElegirAsiento){
+        this.setLayout(null);
         this.removeAll();
         this.indexida=indexida;
         this.panelBus=panelBus;

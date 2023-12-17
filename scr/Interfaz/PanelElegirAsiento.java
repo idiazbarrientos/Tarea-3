@@ -167,6 +167,7 @@ public class PanelElegirAsiento extends JPanel {
      */
     public void comprarAsientosIda() throws AsientoNoSeleccionadoException {
         boolean seleccionado=false;
+        System.out.println(indexida);
         if(busIda.getClass().getSimpleName().equals("BusUnPiso")) {
             for(int i = 0; i<panel1piso.array_botones.size(); i++){
 

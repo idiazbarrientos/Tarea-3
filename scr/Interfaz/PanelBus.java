@@ -205,7 +205,7 @@ public class PanelBus extends JPanel {
         for(int i = 0; i<busArrayList.size(); i++){
             Bus bus=busArrayList.get(i);
             if(Objects.equals(bus.getDia(), diaIda) && Objects.equals(bus.getMes(), mesIda) && Objects.equals(bus.getAnho(), anhoIda) && Objects.equals(bus.getHora(), horarioIda) && Objects.equals(bus.getOrigen(), origen) && Objects.equals(bus.getDestino(), destino)){
-               if(busUnPiso.isSelected() && bus.tipoBus()=="bus1piso"){
+                if(busUnPiso.isSelected() && bus.tipoBus()=="bus1piso"){
                    return i;
                }
                if(busDosPisos.isSelected() && bus.tipoBus()=="Bus2pisos"){
@@ -214,12 +214,12 @@ public class PanelBus extends JPanel {
             }
         }
         if(busUnPiso.isSelected()){
-            BusUnPiso nuevobus=new BusUnPiso(busArrayList.size()+1,diaIda,mesIda,anhoIda,horarioIda,destino,origen);
+            BusUnPiso nuevobus=new BusUnPiso(busArrayList.size()+1,diaIda,mesIda,anhoIda,horarioIda,origen,destino);
             busArrayList.add(nuevobus);
             return busArrayList.size()-1;
         }
         if(busDosPisos.isSelected()){
-            BusDosPisos nuevobus=new BusDosPisos(busArrayList.size()+1,diaIda,mesIda,anhoIda,horarioIda,destino,origen);
+            BusDosPisos nuevobus=new BusDosPisos(busArrayList.size()+1,diaIda,mesIda,anhoIda,horarioIda,origen,destino);
             busArrayList.add(nuevobus);
             return busArrayList.size()-1;
         }
@@ -245,12 +245,12 @@ public class PanelBus extends JPanel {
             }
         }
         if(busUnPiso2.isSelected()){
-            BusUnPiso nuevobus=new BusUnPiso(busArrayList.size()+1,diaVuelta,mesVuelta,anhoVuelta,horarioVuelta,origen,destino);
+            BusUnPiso nuevobus=new BusUnPiso(busArrayList.size()+1,diaVuelta,mesVuelta,anhoVuelta,horarioVuelta,destino,origen);
             busArrayList.add(nuevobus);
             return busArrayList.size()-1;
         }
         if(busDosPisos2.isSelected()){
-            BusDosPisos nuevobus=new BusDosPisos(busArrayList.size()+1,diaVuelta,mesVuelta,anhoVuelta,horarioVuelta,origen,destino);
+            BusDosPisos nuevobus=new BusDosPisos(busArrayList.size()+1,diaVuelta,mesVuelta,anhoVuelta,horarioVuelta,destino,origen);
             busArrayList.add(nuevobus);
             return busArrayList.size()-1;
         }
@@ -357,9 +357,7 @@ public class PanelBus extends JPanel {
         public void actionPerformed(ActionEvent e) {
             try {
                 selecionarTipoDeBus();
-            } catch (BusNoSeleccionadoException ex) {
-                throw new RuntimeException(ex);
-            } catch (HorarioNoSeleccionadoException ex) {
+            } catch (BusNoSeleccionadoException | HorarioNoSeleccionadoException ex) {
                 throw new RuntimeException(ex);
             }
         }
