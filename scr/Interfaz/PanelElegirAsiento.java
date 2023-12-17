@@ -1,5 +1,6 @@
 package Interfaz;
 
+import Codigo.AsientoNoSeleccionadoException;
 import Codigo.Bus;
 import Codigo.TipoAsiento;
 
@@ -132,7 +133,7 @@ public class PanelElegirAsiento extends JPanel {
     /**
      * se registran los asientos seleccioandos que ya han sido comprados en los buses
      */
-    public void guardarAsientosSeleccionados(){
+    public void guardarAsientosSeleccionados() throws AsientoNoSeleccionadoException {
         asientos_seleccionados_ida.clear();
         if(busIda.getClass().getSimpleName().equals("BusUnPiso")) {
             for(int i = 0; i<panel1piso.array_botones.size(); i++){
@@ -156,17 +157,22 @@ public class PanelElegirAsiento extends JPanel {
                 }
             }
         }
+        if(asientos_seleccionados_ida.isEmpty()){
+            throw new AsientoNoSeleccionadoException("Debe seleccionar al menos un asiento");
+        }
     }
 
     /**
      * Dependiendo del bus que se selecciona, se genera la compra de los paneles de asientos respectivos a cada tipo de bus de ida
      */
-    public void comprarAsientosIda(){
+    public void comprarAsientosIda() throws AsientoNoSeleccionadoException {
+        boolean seleccionado=false;
         if(busIda.getClass().getSimpleName().equals("BusUnPiso")) {
             for(int i = 0; i<panel1piso.array_botones.size(); i++){
 
                 BotonAsientos boton = panel1piso.array_botones.get(i);
                 if(boton.asiento.isSelect()){
+                    seleccionado=true;
                     boton.asiento.comprar();
                 }
             }
@@ -177,6 +183,7 @@ public class PanelElegirAsiento extends JPanel {
             for(int i = 0; i<panelpiso1.botonAsientosArrayList.size(); i++){
                 BotonAsientos boton = panelpiso1.botonAsientosArrayList.get(i);
                 if(boton.asiento.isSelect()){
+                    seleccionado=true;
                     boton.asiento.comprar();
                 }
             }
@@ -185,27 +192,30 @@ public class PanelElegirAsiento extends JPanel {
             for(int i = 0; i<panelpiso2.botonAsientosArrayList.size(); i++){
                 BotonAsientos boton = panelpiso2.botonAsientosArrayList.get(i);
                 if(boton.asiento.isSelect()){
+                    seleccionado=true;
                     boton.asiento.comprar();
                 }
             }
             panelpiso2.repaint();
             panelpiso2.refresh(indexida,panelBus,this);
         }
+        if(!seleccionado){
+            throw new AsientoNoSeleccionadoException("Debe seleccionar al menos un asiento");
+        }
         this.setVisible(false);
         this.removeAll();
         this.repaint();
-
-
     }
     /**
      * Dependiendo del bus que se selecciona, se genera la compra de los paneles de asientos respectivos a cada tipo de bus de vuelta
      */
-    public void comprarAsientosVuelta(){
+    public void comprarAsientosVuelta() throws AsientoNoSeleccionadoException {
+        boolean seleccionado = false;
         if(busVuelta.getClass().getSimpleName().equals("BusUnPiso")) {
             for(int i = 0; i<panelBus1Piso.array_botones.size(); i++){
-
                 BotonAsientos boton = panelBus1Piso.array_botones.get(i);
                 if(boton.asiento.isSelect()){
+                    seleccionado = true;
                     boton.asiento.comprar();
                 }
             }
@@ -216,21 +226,25 @@ public class PanelElegirAsiento extends JPanel {
             for(int i = 0; i<panelPiso1.botonAsientosArrayList.size(); i++){
                 BotonAsientos boton = panelPiso1.botonAsientosArrayList.get(i);
                 if(boton.asiento.isSelect()){
+                    seleccionado = true;
                     boton.asiento.comprar();
                 }
             }
             for(int i = 0; i<panelPiso2.botonAsientosArrayList.size(); i++){
                 BotonAsientos boton = panelPiso2.botonAsientosArrayList.get(i);
                 if(boton.asiento.isSelect()){
+                    seleccionado = true;
                     boton.asiento.comprar();
                 }
             }
             panelPiso1.repaint();
-            panelPiso1.refresh(indexida,panelBus,this);
+            panelPiso1.refresh(indexvuelta,panelBus,this);
             panelPiso2.repaint();
-            panelPiso2.refresh(indexida,panelBus,this);
+            panelPiso2.refresh(indexvuelta,panelBus,this);
         }
-
+        if(!seleccionado){
+            throw new AsientoNoSeleccionadoException("Debe seleccionar por lo menos un asiento");
+        }
         for(int i=0; i<asientos_seleccionados_ida.size(); i++){
             BotonAsientos boton = asientos_seleccionados_ida.get(i);
             boton.asiento.comprar();
@@ -537,25 +551,35 @@ public class PanelElegirAsiento extends JPanel {
     private class siguienteListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            guardarAsientosSeleccionados();
-            borrarAsientos();
-            dibujarBusVuelta();
-
-
+            try {
+                guardarAsientosSeleccionados();
+                borrarAsientos();
+                dibujarBusVuelta();
+            } catch (AsientoNoSeleccionadoException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
     private class comprarListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            comprarAsientosIda();
-            panelBus.setVisible(false);
+            try {
+                comprarAsientosIda();
+                panelBus.setVisible(false);
+            } catch (AsientoNoSeleccionadoException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
     private class comprarListener2 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            comprarAsientosVuelta();
-            panelBus.setVisible(false);
+            try {
+                comprarAsientosVuelta();
+                panelBus.setVisible(false);
+            } catch (AsientoNoSeleccionadoException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 }

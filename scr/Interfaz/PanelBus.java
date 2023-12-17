@@ -357,8 +357,6 @@ public class PanelBus extends JPanel {
         public void actionPerformed(ActionEvent e) {
             try {
                 selecionarTipoDeBus();
-            } catch (NoFechaException ex) {
-                throw new RuntimeException(ex);
             } catch (BusNoSeleccionadoException ex) {
                 throw new RuntimeException(ex);
             } catch (HorarioNoSeleccionadoException ex) {
