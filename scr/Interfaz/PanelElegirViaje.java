@@ -409,4 +409,24 @@ public class PanelElegirViaje extends JPanel {
         mesVuelta="11";
         diaVuelta="3";
     }
+    public void setupNoOrigenTest(){
+        ida.setSelected(true);
+        destino = "Concepción";
+        diaIda="9";
+        mesIda="1";
+        anhoIda="2024";
+        mesVuelta="11";
+        diaVuelta="3";
+        anhoVuelta = "2024";
+    }
+    public void setupNoDestinoTest(){
+        ida.setSelected(true);
+        origen = "Concepción";
+        diaIda="9";
+        mesIda="1";
+        anhoIda="2024";
+        mesVuelta="11";
+        diaVuelta="3";
+        anhoVuelta = "2024";
+    }
 }
