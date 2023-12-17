@@ -1,5 +1,6 @@
 package Interfaz;
 
+import Codigo.IdaAntesQueVueltaException;
 import Codigo.NoFechaException;
 import Codigo.excepcioncustom;
 
@@ -264,8 +265,25 @@ public class PanelElegirViaje extends JPanel {
      * @throws excepcioncustom
      * @throws NoFechaException
      */
-    public void seleccionarBus() throws excepcioncustom, NoFechaException {
-        if(ida.isSelected() || vuelta.isSelected()) {
+    public void seleccionarBus() throws excepcioncustom, NoFechaException, IdaAntesQueVueltaException {
+
+        if(diaIda == null || mesIda == null || anhoIda == null){
+            throw new NoFechaException("Elegir fechas validas");
+        }
+        else if(vuelta.isSelected() && (diaVuelta == null || mesVuelta == null || anhoVuelta == null)){
+            throw new NoFechaException("Elegir fechas validas");
+        }
+        else if(anhoVuelta != null && Integer.parseInt(anhoIda) > Integer.parseInt(anhoVuelta)){
+            throw new IdaAntesQueVueltaException("Elegir fechas validas");
+        }
+        else if(anhoVuelta != null && mesVuelta != null && Integer.parseInt(mesIda) > Integer.parseInt(mesVuelta) && Integer.parseInt(anhoIda) >= Integer.parseInt(anhoVuelta)){
+            throw new IdaAntesQueVueltaException("Elegir fechas validas");
+        }
+        else if(anhoVuelta != null && mesVuelta != null && diaVuelta != null && (Integer.parseInt(diaIda) > Integer.parseInt(diaVuelta) && Integer.parseInt(mesIda) >= Integer.parseInt(mesVuelta) && Integer.parseInt(anhoIda) >= Integer.parseInt(anhoVuelta))){
+            throw new IdaAntesQueVueltaException("Elegir fechas validas");
+        }
+
+        else if(ida.isSelected() || vuelta.isSelected()) {
             if(panelbus!=null){
                 panelbus.setVisible(true);
             }else{
@@ -277,18 +295,6 @@ public class PanelElegirViaje extends JPanel {
         else{
             throw new excepcioncustom("No se ha seleccionado ida ni vuelta");
         }
-        if(diaIda == null || mesIda == null || anhoIda == null){
-            throw new NoFechaException("Elegir fechas validas");
-        }
-        else if(anhoVuelta != null && Integer.parseInt(anhoIda) > Integer.parseInt(anhoVuelta)){
-            throw new NoFechaException("Elegir fechas validas");
-        }
-        else if(anhoVuelta != null && mesVuelta != null && Integer.parseInt(mesIda) > Integer.parseInt(mesVuelta) && Integer.parseInt(anhoIda) >= Integer.parseInt(anhoVuelta)){
-            throw new NoFechaException("Elegir fechas validas");
-        }
-        else if(anhoVuelta != null && mesVuelta != null && diaVuelta != null && (Integer.parseInt(diaIda) > Integer.parseInt(diaVuelta) && Integer.parseInt(mesIda) >= Integer.parseInt(mesVuelta) && Integer.parseInt(anhoIda) >= Integer.parseInt(anhoVuelta))){
-            throw new NoFechaException("Elegir fechas validas");
-        }
     }
 
 
@@ -297,7 +303,7 @@ public class PanelElegirViaje extends JPanel {
         public void actionPerformed(ActionEvent e) {
             try {
                 seleccionarBus();
-            } catch (excepcioncustom | NoFechaException ex) {
+            } catch (excepcioncustom | NoFechaException | IdaAntesQueVueltaException ex) {
                 throw new RuntimeException(ex);
             }
         }
