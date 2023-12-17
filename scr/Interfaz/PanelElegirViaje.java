@@ -1,8 +1,7 @@
 package Interfaz;
 
-import Codigo.IdaAntesQueVueltaException;
-import Codigo.NoFechaException;
-import Codigo.NoIdaNoVueltaException;
+import Codigo.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -47,7 +46,7 @@ public class PanelElegirViaje extends JPanel {
     /**
      * Se generan en pantalla los tipos de selecciones para el viaje, origen y destino, fecha de salida, ida con o sin vuelta
      */
-    public PanelElegirViaje() throws NoIdaNoVueltaException {
+    public PanelElegirViaje() {
         this.setLayout(null);
         JMenuItem opcion1 = new JMenuItem("Concepcion");
         JMenuItem opcion2 = new JMenuItem("Santiago");
@@ -83,11 +82,6 @@ public class PanelElegirViaje extends JPanel {
         opcion5.addActionListener(new destinoListener());
         opcion6.addActionListener(new destinoListener());
 
-        if(SeleccionOrigen == null || SeleccionDestino == null){
-
-                throw new NoIdaNoVueltaException("No se ha seleccionado Origen ni Destino");
-
-        }
 
 
         BarraDia = new JMenuBar();
@@ -263,8 +257,12 @@ public class PanelElegirViaje extends JPanel {
      * las opciones de ida y vueltan han sido seleccionadas con anterioridad
      * @throws NoIdaNoVueltaException
      * @throws NoFechaException
+     * @throws IdaAntesQueVueltaException
+     * @throws NoOrigenException
+     * @throws NoDestinoException
+     * @throws OrigenIgualDestinoException
      */
-    public void seleccionarBus() throws NoIdaNoVueltaException, NoFechaException, IdaAntesQueVueltaException, NoIdaNoVueltaException {
+    public void seleccionarBus() throws NoIdaNoVueltaException, NoFechaException, IdaAntesQueVueltaException, NoIdaNoVueltaException, NoOrigenException, NoDestinoException, OrigenIgualDestinoException {
 
         if(diaIda == null || mesIda == null || anhoIda == null){
             throw new NoFechaException("Elegir fechas validas");
@@ -273,15 +271,23 @@ public class PanelElegirViaje extends JPanel {
             throw new NoFechaException("Elegir fechas validas");
         }
         else if(anhoVuelta != null && Integer.parseInt(anhoIda) > Integer.parseInt(anhoVuelta)){
-            throw new IdaAntesQueVueltaException("Elegir fechas validas");
+            throw new IdaAntesQueVueltaException("La vuelta no puede ser antes que la ida");
         }
         else if(anhoVuelta != null && mesVuelta != null && Integer.parseInt(mesIda) > Integer.parseInt(mesVuelta) && Integer.parseInt(anhoIda) >= Integer.parseInt(anhoVuelta)){
-            throw new IdaAntesQueVueltaException("Elegir fechas validas");
+            throw new IdaAntesQueVueltaException("La vuelta no puede ser antes que la ida");
         }
         else if(anhoVuelta != null && mesVuelta != null && diaVuelta != null && (Integer.parseInt(diaIda) > Integer.parseInt(diaVuelta) && Integer.parseInt(mesIda) >= Integer.parseInt(mesVuelta) && Integer.parseInt(anhoIda) >= Integer.parseInt(anhoVuelta))){
-            throw new IdaAntesQueVueltaException("Elegir fechas validas");
+            throw new IdaAntesQueVueltaException("La vuelta no puede ser antes que la ida");
         }
-
+        else if(origen == null){
+            throw new NoOrigenException("Debe seleccionar origen");
+        }
+        else if(destino == null){
+            throw new NoDestinoException("Debe seleccionar destino");
+        }
+        else if(origen.equals(destino)){
+            throw new OrigenIgualDestinoException("El origen no puede ser igual al destino");
+        }
         else if(ida.isSelected() || vuelta.isSelected()) {
             if(panelbus!=null){
                 panelbus.setVisible(true);
@@ -303,6 +309,12 @@ public class PanelElegirViaje extends JPanel {
             try {
                 seleccionarBus();
             } catch (NoIdaNoVueltaException | NoFechaException | IdaAntesQueVueltaException ex) {
+                throw new RuntimeException(ex);
+            } catch (NoOrigenException ex) {
+                throw new RuntimeException(ex);
+            } catch (NoDestinoException ex) {
+                throw new RuntimeException(ex);
+            } catch (OrigenIgualDestinoException ex) {
                 throw new RuntimeException(ex);
             }
         }

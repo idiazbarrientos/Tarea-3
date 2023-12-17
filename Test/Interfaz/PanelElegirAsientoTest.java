@@ -1,6 +1,6 @@
 package Interfaz;
 
-import Codigo.excepcioncustom;
+import Codigo.NoIdaNoVueltaException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ class PanelElegirAsientoTest {
     private PanelElegirAsiento panelElegirAsiento;
 
     @BeforeEach
-    void setUp() throws excepcioncustom {
+    void setUp() throws NoIdaNoVueltaException {
         panelElegirAsiento = new PanelElegirAsiento(2,2, new PanelBus(new PanelElegirViaje()));
     }
 
