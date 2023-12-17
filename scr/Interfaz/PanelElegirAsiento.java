@@ -132,6 +132,7 @@ public class PanelElegirAsiento extends JPanel {
 
     /**
      * se registran los asientos seleccioandos que ya han sido comprados en los buses
+     * @throws AsientoNoSeleccionadoException
      */
     public void guardarAsientosSeleccionados() throws AsientoNoSeleccionadoException {
         asientos_seleccionados_ida.clear();
@@ -164,6 +165,7 @@ public class PanelElegirAsiento extends JPanel {
 
     /**
      * Dependiendo del bus que se selecciona, se genera la compra de los paneles de asientos respectivos a cada tipo de bus de ida
+     * @throws AsientoNoSeleccionadoException
      */
     public void comprarAsientosIda() throws AsientoNoSeleccionadoException {
         boolean seleccionado=false;
@@ -209,6 +211,7 @@ public class PanelElegirAsiento extends JPanel {
     }
     /**
      * Dependiendo del bus que se selecciona, se genera la compra de los paneles de asientos respectivos a cada tipo de bus de vuelta
+     * @throws AsientoNoSeleccionadoException
      */
     public void comprarAsientosVuelta() throws AsientoNoSeleccionadoException {
         boolean seleccionado = false;
