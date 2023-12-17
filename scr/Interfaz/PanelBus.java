@@ -142,8 +142,10 @@ public class PanelBus extends JPanel {
 
     /**
      * Aqui dependiendo de la seleccion del bus, se genera su respectivo piso de asientos
+     * @throws BusNoSeleccionadoException
+     * @throws HorarioNoSeleccionadoException
      */
-    public void selecionarTipoDeBus () throws NoFechaException, BusNoSeleccionadoException, HorarioNoSeleccionadoException {
+    public void selecionarTipoDeBus () throws BusNoSeleccionadoException, HorarioNoSeleccionadoException {
         int indexida, indexvuelta = -1;
         if(!busUnPiso.isSelected() && !busDosPisos.isSelected()){
             throw new BusNoSeleccionadoException("Debe seleccionar un tipo de bus de ida");
