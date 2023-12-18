@@ -378,4 +378,33 @@ public class PanelBus extends JPanel {
             horarioVuelta = hora.getText();
         }
     }
+    public void setupBusIdaNoSeleccionadoTest(){
+        busUnPiso.setSelected(false);
+        busDosPisos.setSelected(false);
+    }
+    public void setupBusVueltaNoSeleccionadoTest(){
+        diaVuelta = "1";
+       busUnPiso.setSelected(true);
+       busDosPisos.setSelected(true);
+       busUnPiso2 = new JToggleButton("bus un piso");
+       busDosPisos2 = new JToggleButton("bus 2 pisos");
+       busUnPiso2.setSelected(false);
+       busDosPisos2.setSelected(false);
+    }
+    public void setupHorarioIdaNoSeleccionadoTest(){
+        busUnPiso.setSelected(true);
+        busDosPisos.setSelected(true);
+        horarioIda = null;
+    }
+    public void setupHorarioVueltaNoSeleccionadoTest(){
+        busUnPiso.setSelected(true);
+        busDosPisos.setSelected(true);
+        horarioIda = "10:00";
+        diaVuelta = "1";
+        busUnPiso2 = new JToggleButton("bus un piso");
+        busDosPisos2 = new JToggleButton("bus 2 pisos");
+        busUnPiso2.setSelected(true);
+        busDosPisos2.setSelected(true);
+        horarioVuelta = null;
+    }
 }
