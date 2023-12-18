@@ -85,4 +85,5 @@ class PanelElegirViajeTest {
             panelElegirViaje.seleccionarBus();
         });
     }
+
 }

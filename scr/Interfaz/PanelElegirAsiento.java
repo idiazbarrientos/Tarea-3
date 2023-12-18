@@ -309,33 +309,33 @@ public class PanelElegirAsiento extends JPanel {
                 }
 
             }
-                JLabel salon_cama_i=new JLabel("Salón Cama");
-                JLabel nsac_i=new JLabel(Integer.toString(n_salonc));
-                JLabel precio_u_sac_i=new JLabel("10000");
-                JLabel num_asientos_sac_i=new JLabel(numeros_salonc);
-                JLabel precio_total_sac_i=new JLabel(Integer.toString(n_salonc*10000));
+            JLabel salon_cama_i=new JLabel("Salón Cama");
+            JLabel nsac_i=new JLabel(Integer.toString(n_salonc));
+            JLabel precio_u_sac_i=new JLabel("10000");
+            JLabel num_asientos_sac_i=new JLabel(numeros_salonc);
+            JLabel precio_total_sac_i=new JLabel(Integer.toString(n_salonc*10000));
 
-                panelrcompra.add(label_ida);
-                label_ida.setBounds(10,10,100,10);
-                panelrcompra.add(label_origen_i);
-                label_origen_i.setBounds(10,25,150,10);
-                panelrcompra.add(label_destino_i);
-                label_destino_i.setBounds(170,25,150,10);
-                panelrcompra.add(label_fecha_i);
-                label_fecha_i.setBounds(325,25,80,10);
-                panelrcompra.add(label_hora_i);
-                label_hora_i.setBounds(410,25,150,10);
+            panelrcompra.add(label_ida);
+            label_ida.setBounds(10,10,100,10);
+            panelrcompra.add(label_origen_i);
+            label_origen_i.setBounds(10,25,150,10);
+            panelrcompra.add(label_destino_i);
+            label_destino_i.setBounds(170,25,150,10);
+            panelrcompra.add(label_fecha_i);
+            label_fecha_i.setBounds(325,25,80,10);
+            panelrcompra.add(label_hora_i);
+            label_hora_i.setBounds(410,25,150,10);
 
-                panelrcompra.add(salon_cama_i);
-                salon_cama_i.setBounds(10,40,80,10);
-                panelrcompra.add(nsac_i);
-                nsac_i.setBounds(120,40,10,10);
-                panelrcompra.add(precio_u_sac_i);
-                precio_u_sac_i.setBounds(135,40,80,10);
-                panelrcompra.add(num_asientos_sac_i);
-                num_asientos_sac_i.setBounds(220,40,200,10);
-                panelrcompra.add(precio_total_sac_i);
-                precio_total_sac_i.setBounds(425,40,40,10);
+            panelrcompra.add(salon_cama_i);
+            salon_cama_i.setBounds(10,40,80,10);
+            panelrcompra.add(nsac_i);
+            nsac_i.setBounds(120,40,10,10);
+            panelrcompra.add(precio_u_sac_i);
+            precio_u_sac_i.setBounds(135,40,80,10);
+            panelrcompra.add(num_asientos_sac_i);
+            num_asientos_sac_i.setBounds(220,40,200,10);
+            panelrcompra.add(precio_total_sac_i);
+            precio_total_sac_i.setBounds(425,40,40,10);
 
         JLabel semi_cama_i=new JLabel("Semi-Cama");
         JLabel nsemic_i=new JLabel(Integer.toString(n_semic));
@@ -400,14 +400,12 @@ public class PanelElegirAsiento extends JPanel {
                     numeros_semic_v=numeros_semic_v+asiento.asiento.getNumeroAsiento()+" ";
                     n_semic_v+=1;
                 }
-
             }
             JLabel salon_cama_v=new JLabel("Salón Cama");
             JLabel nsac_v=new JLabel(Integer.toString(n_salonc_v));
             JLabel precio_u_sac_v=new JLabel("10000");
             JLabel num_asientos_sac_v=new JLabel(numeros_salonc_v);
             JLabel precio_total_sac_v=new JLabel(Integer.toString(n_salonc_v*10000));
-
 
             panelrcompra.add(label_vuelta);
             label_vuelta.setBounds(10,70,100,10);
@@ -463,25 +461,18 @@ public class PanelElegirAsiento extends JPanel {
      */
     public void refresh(int indexida,int indexvuelta,PanelBus panelBus){
         this.setLayout(null);
-
         this.removeAll();
         this.revalidate();
         this.repaint();
-
-
         this.panelBus=panelBus;
         this.indexvuelta = indexvuelta;
         this.indexida=indexida;
-
-
 
         busIda = panelBus.busArrayList.get(indexida);
         if(indexvuelta!=-1) {
             busVuelta = panelBus.busArrayList.get(indexvuelta);
         }
-
         if(busIda.getClass().getSimpleName().equals("BusUnPiso")) {
-
             this.revalidate();
             this.repaint();
             if(panel1piso==null){
@@ -499,9 +490,6 @@ public class PanelElegirAsiento extends JPanel {
                 this.revalidate();
                 this.repaint();
             }
-
-
-
         }
         if(busIda.getClass().getSimpleName().equals("BusDosPisos")) {
             if(panelpiso1==null) {
